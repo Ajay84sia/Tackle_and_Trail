@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../HomePage/Home";
+import AdminDashboard from "../Admin/AdminDashboard";
+import HomePage from "../Pages/HomePage";
 
 function AllRoutes(){
     return (
         <>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/admin" element={<AdminDashboard/>} />
             </Routes>
         </>
     )
