@@ -1,6 +1,13 @@
-import axios from "axios";
-import "./product.css";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { getproducts } from "../Redux/productReducer/action";
+import {Pagination} from "./Pagination"
 import { useState } from "react";
+import Sidebar from "./Sidebar";
+import "./product.css"
 import { Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
@@ -13,37 +20,44 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from "@chakra-ui/react";
-import { Pagination } from "./Pagination";
-// import {Pagination} from "./Pagination"
-// import Pagination from "./pagination";
 import { AccordionIcon } from "@chakra-ui/react";
-import { useEffect } from "react";
+
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
 import { Heading, Text, Divider } from "@chakra-ui/react";
-import Sidebar from "./Sidebar";
+
 import { Center } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 
 export const Product = () => {
-  const [data, setData] = useState([]);
-  const [product, setProduct] = useState([]);
+  const [searchParams]=useSearchParams()
+ 
+  console.log(useSearchParams())
+  const{products}=useSelector((store)=>store.productReducer)
+  const[page,setPage]=useState(1)
+  const initialOrder=searchParams.get("order")
+  const[order,setOrder]=useState(initialOrder||"")
+  const dispatch=useDispatch()
+  let obj={
+    params:{
+      category:searchParams.getAll("category"),
+      
+    }
+  }
+  
+  useEffect(()=>{
+    dispatch(getproducts(obj,page))
+  },[page])
+const handleSort=(e)=>{
+setOrder(e.target.value)
 
-  const temp = async () => {
-    let res = await axios.get("https://tackle-and-trail.onrender.com/camping");
-    console.log(res);
-    setData(res.data);
-  };
-  useEffect(() => {
-    temp();
-  }, []);
-console.log(product)
+}
   return (
     <>
-      <div className="wrapper">
-        <Sidebar />
+ <div className="wrapper">
+ <Sidebar page={page}/>
         <div
           style={{
             borderLeft: "1px solid grey",
@@ -58,11 +72,11 @@ console.log(product)
               <span>TENTS</span>
               <br />
               <br />
-              <span>{data.length} Results</span>
+              
             </div>
-
+         
             <div style={{ textAlign: "right" }} className="top-div">
-              <Menu className="menu">
+            <Menu className="menu">
                 <MenuButton
                   className="menu"
                   as={Button}
@@ -70,12 +84,12 @@ console.log(product)
                 >
                   Sort By:Brand
                 </MenuButton>
-                <MenuList className="childmenu" zIndex={15}>
+                <MenuList className="childmenu" zIndex={15} onKeyDown>
                   <div className="childhover">Relevance</div>
                   <div className="childhover">Brands</div>
                   <div className="childhover">Name</div>
-                  <div className="childhover">Price(Low to High)</div>
-                  <div className="childhover">Price(High to Low)</div>
+                  <div value={"asc"} onClick={handleSort} className="childhover">Price(Low to High)</div>
+                  <div value={"desc"} onClick={handleSort} className="childhover">Price(High to Low)</div>
                   <div className="childhover">Top Rated</div>
                   <div className="childhover">Most Reviewed</div>
                 </MenuList>
@@ -94,7 +108,7 @@ console.log(product)
             }}
             className="bottom-div"
           >
-            {product.map((el) => {
+            {products.map((el) => {
               return (
                 <div
                   style={{ display: "flex", justifyContent: "space-around" }}
@@ -110,6 +124,7 @@ console.log(product)
                       <Stack mt="6" spacing="3">
                         <Text size="md">{el.title}</Text>
                         <Text>{el.reviews}</Text>
+                        <Text>{el.category}</Text>
                         <Text color="blue.600" fontSize="2xl">
                           {el.price}
                         </Text>
@@ -118,16 +133,18 @@ console.log(product)
                     <Divider />
                     <CardFooter></CardFooter>
                   </Card>
-                 
                 </div>
               );
             })}
           </div>
         </div>
       </div>
-      <Pagination setProducts={setProduct} fulllength={data}
-
-/>
+<Pagination page={page} setPage={setPage}/>
     </>
-  );
+  )
+ 
+  
+ 
+  ;
+
 };
