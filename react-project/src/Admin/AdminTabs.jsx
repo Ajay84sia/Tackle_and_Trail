@@ -3,6 +3,7 @@ import React from "react";
 import AdminAddProducts from "./AdminAddProducts";
 import AdminDeleteProducts from "./AdminDeleteProducts";
 import AdminEditProducts from "./AdminEditProducts";
+import AdminOrderMangement from "./AdminOrderMangement";
 import AdminViewProducts from "./AdminViewProducts";
 
 const AdminTabs = () => {
@@ -25,6 +26,10 @@ const AdminTabs = () => {
           <TabPanel>
             <AdminDeleteProducts />
           </TabPanel>
+          <TabPanel>
+            <AdminOrderMangement />
+          </TabPanel>
+          
         </TabPanels>
         <TabList width={"16vw"} borderLeft="2px solid black">
           <Tab
@@ -56,6 +61,12 @@ const AdminTabs = () => {
             style={{ fontSize: "large", fontWeight: "bold", height: "7vh" }}
           >
             Delete Products
+          </Tab>
+          <Tab
+            _selected={{ color: "white", bg: "orange.400" }}
+            style={{ fontSize: "large", fontWeight: "bold", height: "7vh" }}
+          >
+            Orders
           </Tab>
         </TabList>
       </Tabs>
