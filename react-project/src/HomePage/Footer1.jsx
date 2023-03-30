@@ -12,17 +12,17 @@ export const Footer1 = () => {
             <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Live Chat</Text>
             <HStack>
                 <AiOutlineMail cursor={"pointer"} fontSize="30px"/>
-                <Text cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>Email Us</Text>
+                <Text fontSize={"lg"} cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>Email Us</Text>
             </HStack>
             <HStack>
                 <FiPhoneCall cursor={"pointer"} fontSize={"30px"} />
-                <Text cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>1-800-227-7776</Text>
+                <Text fontSize={"lg"} cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>1-800-227-7776</Text>
             </HStack>
             <HStack>
                 <AiOutlineQuestionCircle cursor={"pointer"} fontSize={"30px"} />
-                <Text cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>FAQs</Text>
+                <Text fontSize={"lg"} cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>FAQs</Text>
             </HStack>
-            <Text cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>Support ID: UBD337221938 ?</Text>
+            <Text fontSize={"lg"} cursor={"pointer"} _hover={{textDecoration:"underline"}} fontWeight={"500"}>Support ID: UBD337221938 ?</Text>
     </Flex>
   )
 }

@@ -30,10 +30,10 @@ function Home(){
                 >
                     <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_945/v1677858198/DigitalCreative/2023/Campaigns/wk09-3-9/Homepage/sfc_homepage_sub_tradein.png" />
                     <VStack spacing={4} color={"white"} pos={"relative"} bottom="50vh">
-                    <Text fontWeight={"bold"} fontSize={"2xl"}>--SPRING--</Text>
-                        <Heading fontWeight={"bold"} size={"2xl"}>ROD AND REEL</Heading>
-                        <Heading fontWeight={"bold"} size={"2xl"}>TREAD-IN</Heading>
-                        <Text fontSize={"2xl"}>SAVE UPTO $100 | IN-STORE ONLY</Text>
+                    <Text fontWeight={"bold"} fontSize={"lg"}>--SPRING--</Text>
+                        <Heading fontWeight={"bold"} size={"lg"}>ROD AND REEL</Heading>
+                        <Heading fontWeight={"bold"} size={"lg"}>TREAD-IN</Heading>
+                        <Text fontSize={"lg"}>SAVE UPTO $100 | IN-STORE ONLY</Text>
                         <Button pos={"relative"} top="1vh" bgColor={"white"} color="black" size={"lg"}>SHOP NOW</Button>
                     </VStack>
                 </Box>
@@ -46,8 +46,8 @@ function Home(){
                 >
                     <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_945/v1677858198/DigitalCreative/2023/Campaigns/wk09-3-9/Homepage/sfc_homepage_sub_rodreels_bps.png" />
                     <VStack color={"white"} pos={"relative"} bottom="35vh">
-                        <Heading fontWeight={"bold"} size={"2xl"}>JOHNNY MORRIS</Heading>
-                        <Heading fontWeight={"bold"} size={"2xl"}>RODS & REELS</Heading>
+                        <Heading fontWeight={"bold"} size={"lg"}>JOHNNY MORRIS</Heading>
+                        <Heading fontWeight={"bold"} size={"lg"}>RODS & REELS</Heading>
                         <Button bgColor={"white"} color="black" pos={"relative"} top="3vh" size={"lg"}>SHOP NOW</Button>
                     </VStack>
                 </Box>
@@ -72,40 +72,40 @@ function Home(){
                 </Box>
             </Flex>
             <Box mt={"3vh"}  width={"100%"} height="83vh">
-            <Text fontSize={"4xl"} borderBottom="1px solid lightgrey" fontWeight="bold">HOT THIS WEEK</Text>
+            <Text fontSize={"3xl"} fontWeight="bold">HOT THIS WEEK</Text>
                 <ProductSlider />
             </Box>
             <Box mt={"3vh"} width={"100%"} height="55vh">
-                <Text fontSize={"4xl"} fontWeight="bold">SHOP BY CATEGORIES</Text>
+                <Text fontSize={"3xl"} fontWeight="bold">SHOP BY CATEGORIES</Text>
                 <Grid mt={"4vh"} gridTemplateColumns={"repeat(5,1fr)"} gap="10px">
                     <GridItem cursor="pointer">
                         <VStack>
                             <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_263/v1675721556/DigitalCreative/2023/Campaigns/wk06-2-9/Homepage/Category-Update/BPS_cat-marine.png" />
-                            <Text fontSize={"2xl"} fontWeight="semibold"> MARINE ELECTRONICS</Text>
+                            <Text fontSize={"lg"} fontWeight="semibold"> MARINE ELECTRONICS</Text>
                         </VStack>
                     </GridItem>
                     <GridItem cursor="pointer">
                         <VStack>
                             <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_263/v1675721556/DigitalCreative/2023/Campaigns/wk06-2-9/Homepage/Category-Update/BPS_cat-reel.png" />
-                            <Text fontSize={"2xl"} fontWeight="semibold">FISHING REELS</Text>
+                            <Text fontSize={"lg"} fontWeight="semibold">FISHING REELS</Text>
                         </VStack>
                     </GridItem>
                     <GridItem cursor="pointer">
                         <VStack>
                             <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_263/v1675721556/DigitalCreative/2023/Campaigns/wk06-2-9/Homepage/Category-Update/BPS_cat-trolling-motor.png" />
-                            <Text fontSize={"2xl"} fontWeight="semibold"> TROLLING MOTORS</Text>
+                            <Text fontSize={"lg"} fontWeight="semibold"> TROLLING MOTORS</Text>
                         </VStack>
                     </GridItem>
                     <GridItem cursor="pointer">
                         <VStack>
                             <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_263/v1675721556/DigitalCreative/2023/Campaigns/wk06-2-9/Homepage/Category-Update/BPS_cat-jigs.png" />
-                            <Text fontSize={"2xl"} fontWeight="semibold"> JIGS</Text>
+                            <Text fontSize={"lg"} fontWeight="semibold"> JIGS</Text>
                         </VStack>
                     </GridItem>
                     <GridItem cursor="pointer">
                         <VStack>
                             <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_263/v1677080754/DigitalCreative/2023/Campaigns/wk06-2-9/Homepage/Category-Update/BPS_cat-fishing-clothing.png" />
-                            <Text fontSize={"2xl"} fontWeight="semibold">FISHING CLOTHING</Text>
+                            <Text fontSize={"lg"} fontWeight="semibold">FISHING CLOTHING</Text>
                         </VStack>
                     </GridItem>
                 </Grid>
@@ -127,7 +127,7 @@ function Home(){
                 >
                     <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_945/v1678488592/DigitalCreative/2023/Campaigns/wk09-3-9/Homepage/CLUB_CEP_homepage_sub.png" />
                     <VStack spacing={1} color={"white"} align="start" pos={"relative"} left="2vw" bottom="40vh">
-                        <Heading fontWeight={"bold"} size={"2xl"}>EXCLUSIVE</Heading>
+                        <Heading fontWeight={"bold"} size={"lg"}>EXCLUSIVE</Heading>
                         <Heading fontWeight={"bold"} size={"lg"} color="#EFB628">CLUB MEMBER</Heading>
                         <Heading fontWeight={"bold"} size={"lg"} color="#EFB628">SAVINGS</Heading>
                         <Button pos={"relative"} top="5vh" bgColor={"white"} color="black" size={"lg"}>SHOP NOW</Button>
@@ -142,18 +142,18 @@ function Home(){
                 >
                     <Image src="https://assets.basspro.com/image/upload/c_scale,f_auto,q_auto,w_945/v1677858198/DigitalCreative/2023/Campaigns/wk09-3-9/Homepage/sfc_homepage_sub_cclothing.png" />
                     <VStack spacing={1} color={"white"} align="start" pos={"relative"} pl="2vw" bottom="45vh">
-                        <Text fontSize={"2xl"} fontWeight="thin">LIMITED TIME ONLY</Text>
-                        <Heading fontWeight={"bold"} size={"2xl"}>CLOTHING</Heading>
-                        <Heading fontWeight={"bold"} size={"2xl"}>CLEARANCE SALE</Heading>
-                        <Text fontSize={"2xl"} fontWeight="thin">WE TOOK AN ADDITIONAL</Text>
-                        <Text fontSize={"2xl"} fontWeight="thin">25% OFF SELECT ITEMS!</Text>
+                        <Text fontSize={"lg"} fontWeight="thin">LIMITED TIME ONLY</Text>
+                        <Heading fontWeight={"bold"} size={"lg"}>CLOTHING</Heading>
+                        <Heading fontWeight={"bold"} size={"lg"}>CLEARANCE SALE</Heading>
+                        <Text fontSize={"lg"} fontWeight="thin">WE TOOK AN ADDITIONAL</Text>
+                        <Text fontSize={"lg"} fontWeight="thin">25% OFF SELECT ITEMS!</Text>
                         <Button bgColor={"white"} color="black" pos={"relative"} top="3vh" size={"lg"}>SHOP NOW</Button>
                     </VStack>
                 </Box>
             </Flex>
 
             <Box mt={"3vh"} ml="2vw" width={"98%"} height="25vh">
-                <Text fontSize={"4xl"} fontWeight="bold">OUR TOP BRANDS</Text>
+                <Text fontSize={"3xl"} fontWeight="bold">OUR TOP BRANDS</Text>
                 <Grid mt={"4vh"} gridTemplateColumns={"repeat(8,1fr)"} gap="8px">
                     <GridItem cursor="pointer">
                             <Image maxH={"100px"} src="https://assets.basspro.com/image/upload/f_auto,q_auto/v1675727179/DigitalCreative/2023/Campaigns/wk06-2-9/Homepage/Brands-Update/logo-bps.jpg" />
