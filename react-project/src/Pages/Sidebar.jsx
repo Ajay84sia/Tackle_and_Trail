@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -8,7 +8,39 @@ import {
 } from "@chakra-ui/react";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
-const Sidebar = () => {
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+const Sidebar = ({page,order}) => {
+  const[searchParams,setSearchParams]=useSearchParams()
+  const initialcategory=searchParams.getAll("category")
+  const[category,setcategory]=useState(initialcategory||[])
+//   const{products}=useSelector((store)=>store.productReducer)
+ 
+// const[order,setOrder]=useState("")
+// const[reviews,setreviews]=useState("")
+
+useEffect(()=>{
+  let params={
+    category,
+  }
+order&& (params.order = order)
+  setSearchParams(params)
+},[order,category])
+
+const handleChange=(e)=>{
+  let newcategory=[...category]
+  const value=e.target.value;
+  console.log(value)
+  if(newcategory.includes(value)){
+    newcategory.splice(newcategory.indexOf(value),1)
+  }
+else{
+  newcategory.push(value)
+  }
+setcategory(newcategory)
+}
+
   return (
     <div style={{ height: "800px", width: "320px" }}>
       <h1>FILTER BY</h1>
@@ -19,7 +51,7 @@ const Sidebar = () => {
               height="50px"
               width="300px"
               backgroundColor="white"
-              border="2px solid grey"
+             
             >
               <Box as="span" flex="1" textAlign="left">
                 <h3>Availability</h3>
@@ -32,7 +64,7 @@ const Sidebar = () => {
               height="20px"
               width="20px"
               textAlign="left"
-              border="1px solid black"
+           
               alignSelf="left"
             />
             <span>In Stock</span>
@@ -42,7 +74,7 @@ const Sidebar = () => {
               height="20px"
               width="20px"
               textAlign="left"
-              border="1px solid black"
+            
             />
             <span>Limited Stock</span>
           </AccordionPanel>
@@ -69,8 +101,12 @@ const Sidebar = () => {
               textAlign="left"
               border="1px solid black"
               alignSelf="left"
+              value={"tents"}
+              onChange={handleChange}
+              checked={category.includes("tents")}
+              defaultChecked={category=="tents"}
             />
-            <span>In Stock</span>
+            <span>Tents</span>
             <br />
             <br />
             <Checkbox
@@ -78,8 +114,23 @@ const Sidebar = () => {
               width="20px"
               textAlign="left"
               border="1px solid black"
+              value={"Kitchen"}
+              onChange={handleChange}
+              checked={category.includes("Kitchen")}
             />
-            <span>Limited Stock</span>
+            <span>Kitchen</span>
+            <br/>
+            <br/>
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+              border="1px solid black"
+              checked={category.includes("Lighting")}
+              value={"Lighting"}
+              onChange={handleChange}
+            />
+            <span>lighting</span>
           </AccordionPanel>
         </AccordionItem>
 
@@ -176,7 +227,7 @@ const Sidebar = () => {
               border="1px solid black"
               alignSelf="left"
             />
-            <span>In Stock</span>
+            <span>Price:0-100</span>
             <br />
             <br />
             <Checkbox
@@ -185,7 +236,30 @@ const Sidebar = () => {
               textAlign="left"
               border="1px solid black"
             />
-            <span>Limited Stock</span>
+            <span>Price:100-200</span>
+            <br/>
+            <br/>
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+              border="1px solid black"
+              alignSelf="left"
+            />
+            <span>Price:200-250</span>
+            <br/>
+            <br/>
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+              border="1px solid black"
+              alignSelf="left"
+            />
+            <span>Price:250-300</span>
+            <br/>
+            <br/>
+            <span>Price:300-above</span>
           </AccordionPanel>
         </AccordionItem>
         <hr />
@@ -225,6 +299,7 @@ const Sidebar = () => {
         </AccordionItem>
       </Accordion>
     </div>
+
   );
 };
 

@@ -11,8 +11,6 @@ function App() {
   return (
     <div className="App">
       <AllRoutes />
-      <Cart/>
-     
     </div>
   );
 }
