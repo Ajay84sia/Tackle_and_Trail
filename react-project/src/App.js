@@ -5,12 +5,12 @@ import { Divider } from '@chakra-ui/react';
 import Navbar from './Components/Navbar';
 import AllRoutes from './Components/AllRoutes';
 import { Product } from './Pages/Product';
+import { ProductSlider } from './HomePage/ProductSlider';
 
 function App() {
   return (
     <div className="App">
       <AllRoutes />
-     
     </div>
   );
 }
