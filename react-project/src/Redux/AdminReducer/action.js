@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST } from "./actionTypes"
+import { ADMIN_DELETE_REQUEST, ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST } from "./actionTypes"
 
 
 
@@ -44,3 +44,12 @@ export const adminPostReq = (endpoint, Obj) => (dispatch) => {
 
 //Delete Request
 
+export const adminDelReq = (endpoint, id) => (dispatch) => {
+    dispatch({ type: ADMIN_REQUEST })
+
+    return axios.delete(`https://tackle-and-trail.onrender.com/${endpoint}/${id}`).then((res) => {
+        dispatch({ type: ADMIN_DELETE_REQUEST })
+    }).catch(() => {
+        dispatch({ type: ADMIN_FAILURE_REQUEST })
+    })
+}
