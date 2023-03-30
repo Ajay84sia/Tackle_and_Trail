@@ -22,7 +22,8 @@
   
   .wrapper::before {
     content: "";
-    border-left: 3px solid purple;
+    border-left: 3px solid black;
+    
     height: 100%;
     margin-right: 10px;
   }
