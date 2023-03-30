@@ -36,13 +36,16 @@ export const Product = () => {
   const location = useLocation();
   const { products } = useSelector((store) => store.productReducer);
   const [page, setPage] = useState(1);
+  const[sorting,setSorting]=useState("")
   const initialOrder = searchParams.get("order");
-  const [order, setOrder] = useState(initialOrder || "");
+  const [order, setOrder] = useState(initialOrder || "")
   const dispatch = useDispatch();
   const obj = {
     params: {
       category: searchParams.getAll("category"),
-      _sort: searchParams.get("order") && "price",
+      title:searchParams.getAll("title"),
+      _sort: searchParams.get("order") && ("price") ,
+      // _sort:searchParams.get("order")&&("reviews"),
       _order:searchParams.get("order")
       
     },
@@ -55,10 +58,11 @@ export const Product = () => {
   const handleSort = (event) => {
     const sortingOption = event.target.dataset.sort;
     // do something with the selected sorting option
+   
     setOrder(sortingOption);
   };
   console.log(order)
-
+console.log(sorting)
   return (
     <>
       <div className="wrapper">
@@ -98,7 +102,7 @@ export const Product = () => {
                   </div>
                   <div
                     className="childhover"
-                    data-sort="asc"
+                    
                     onClick={handleSort}
                   >
                     Brands
@@ -136,6 +140,7 @@ export const Product = () => {
                     className="childhover"
                     data-sort="desc"
                     onClick={handleSort}
+                   
                   >
                     Most Reviewed
                   </div>
@@ -175,6 +180,7 @@ export const Product = () => {
                         <Text color="blue.600" fontSize="2xl">
                           {el.price}
                         </Text>
+                        <Text>{el.offer}</Text>
                       </Stack>
                     </CardBody>
                  
