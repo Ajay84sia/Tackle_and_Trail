@@ -25,9 +25,11 @@ import {
         //   boxShadow={'2xl'}
         //   rounded={'lg'}
           pos={'relative'}
-          _hover={{boxShadow:'2xl' , rounded:'lg'}}
+          _hover={{boxShadow:'2xl'}}
           cursor="pointer"
+          style={{borderTop:"1px solid lightgrey"}}
           zIndex={1}>
+            
           <Box
             rounded={'lg'}
             // mt={-12}

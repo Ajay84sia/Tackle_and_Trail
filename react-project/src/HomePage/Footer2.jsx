@@ -75,10 +75,10 @@ const Footer2 = () => {
                 </Heading>
                 <VStack align={"start"}>
                     <Input pb={"1vh"} color="gray" fontWeight={"medium"} bgColor={"white"} width="20vw" height={"7vh"} placeholder="Enter Your Email Address" />
-                    <Text fontWeight={"semibold"}>You can unsubscribe at any time.</Text>
+                    <Text fontSize={"md"} fontWeight={"semibold"}>You can unsubscribe at any time.</Text>
                 </VStack>
                 <Checkbox colorScheme="blackAlpha" >
-                    <Text>
+                    <Text fontSize={"md"}>
                         I agree to receive special offers, promotions, and catalog announcements
                     </Text>
                 </Checkbox>
@@ -87,15 +87,15 @@ const Footer2 = () => {
             <VStack align={"start"} spacing={"5vh"} mt="6vh">
                 <HStack>
                     <FcSms cursor={"pointer"} fontSize={"40px"} />
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}} textAlign={"center"}>Sign Up for SMS Messaging</Text>
+                    <Text fontSize={"md"} cursor={"pointer"} _hover={{textDecoration:"underline"}} textAlign={"center"}>Sign Up for SMS Messaging</Text>
                 </HStack>
                 <HStack>
                     <FcBookmark cursor={"pointer"} fontSize={"40px"} />
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}} textAlign={"center"}> Get Our Free Catalog</Text>
+                    <Text fontSize={"md"} cursor={"pointer"} _hover={{textDecoration:"underline"}} textAlign={"center"}> Get Our Free Catalog</Text>
                 </HStack>
                 <HStack>
                     <FcIphone cursor={"pointer"} fontSize={"40px"} />
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}} textAlign={"center"}> Download Our Mobile App</Text>
+                    <Text fontSize={"md"} cursor={"pointer"} _hover={{textDecoration:"underline"}} textAlign={"center"}> Download Our Mobile App</Text>
                 </HStack>
             </VStack>
         </Box>
