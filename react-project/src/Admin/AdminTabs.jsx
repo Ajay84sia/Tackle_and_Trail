@@ -1,4 +1,5 @@
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from "@chakra-ui/react";
+import Chart from "./Chart";
 import React from "react";
 import AdminAddProducts from "./AdminAddProducts";
 import AdminDeleteProducts from "./AdminDeleteProducts";
@@ -11,7 +12,7 @@ const AdminTabs = () => {
       <Tabs variant="unstyled" orientation="vertical" paddingTop="80px">
         <TabPanels>
           <TabPanel>
-            <p>Summary</p>
+            <Chart/>
           </TabPanel>
           <TabPanel>
             <AdminViewProducts />
