@@ -1,6 +1,7 @@
-import { Box, Button, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import MyCard from './MyCard'
+
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { data } from './Data';

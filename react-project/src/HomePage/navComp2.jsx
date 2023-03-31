@@ -6,6 +6,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { GiShoppingCart } from "react-icons/gi";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import {Link as NavLink} from "react-router-dom"
+import DynamicCart from "../Admin/DynamicCart";
 function NavComp2(){
     return(
         <Flex minWidth='max-content' alignItems='center' gap='2' h="15vh">
@@ -34,17 +35,17 @@ function NavComp2(){
             <InputLeftElement pt={"6px"} pointerEvents="none">
               <SearchOutlinedIcon />
             </InputLeftElement>
-            <Input variant={"filled"} height={"45px"} width={"55vw"}  type="tel" placeholder="Search..." />
+            <Input variant={"filled"} height={"45px"} width={"55vw"}  type="tel" placeholder="What can we help you find?" />
           </InputGroup>
         </HStack>
         <Spacer />
         <Box  width={"20vw"}>
             <HStack ml={"3vw"} gap={6} justifyContent={"center"} align={"center"}>
                 <Box _hover={{fontWeight:"semibold"}} >
-                    <HiOutlineUserCircle fontSize={"40px"} />
+                    <HiOutlineUserCircle cursor={"pointer"} fontSize={"40px"} />
                 </Box>
-                <Box>
-                    <GiShoppingCart fontSize={"40px"}  />
+                <Box >
+                    <DynamicCart   />
                 </Box>
             </HStack>
         </Box>
