@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  
+  font-size: 30px;
   font-weight: 300;
   text-align: center;
   font-weight:bolder;
@@ -33,6 +33,7 @@ const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
+  border: 1px solid black;
   border: ${(props) => props.type === "filled" && "none"};
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};

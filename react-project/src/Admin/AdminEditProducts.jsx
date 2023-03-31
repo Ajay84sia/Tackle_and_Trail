@@ -4,10 +4,7 @@ import DynamicCart from './DynamicCart'
 
 const AdminEditProducts = () => {
   return (
-    <div>
-      {/* <DynamicCart/>
-       */}
-       {/* <Product/> */}
+
     </div>
   )
 }

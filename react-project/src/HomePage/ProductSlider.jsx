@@ -1,10 +1,9 @@
 import { Box } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import MyCard from './MyCard'
-import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../Redux/SliderReducer/action';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { data } from './Data';
 export const ProductSlider = () => {
     const responsive = {
         superLargeDesktop: {
@@ -25,25 +24,25 @@ export const ProductSlider = () => {
           items: 1
         }
       };
-    const dispatch = useDispatch()
-    const {products} = useSelector(store=>{
-        console.log(store)
-        return {
-            products: store.sliderReducer.products,
-        }
-    })
+    // const dispatch = useDispatch()
+    // const {products} = useSelector(store=>{
+    //     console.log(store)
+    //     return {
+    //         products: store.sliderReducer.products,
+    //     }
+    // })
 
-    useEffect(()=>{
-        dispatch(getProducts)
-    },[])
-    console.log(products)
-    
+    // useEffect(()=>{
+    //     dispatch(getProducts)
+    // },[])
+    // console.log(products)
+    console.log(data)
   return (
     <Box pos={"relative"} overflow="hidden">
 
             <Carousel responsive={responsive}>
                 {
-                    products.map((el)=>(
+                    data.map((el)=>(
                             <MyCard key={el.id} {...el} />
                     ))
                 }

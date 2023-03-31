@@ -11,7 +11,7 @@ import { Box } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-const Sidebar = ({ page, order }) => {
+const Sidebar = ({ page, order,search }) => {
   const [searchParams, setsearchParams] = useSearchParams();
   const initialcategory = searchParams.getAll("category");
   const [category, setcategory] = useState(initialcategory || []);
@@ -24,9 +24,10 @@ const Sidebar = ({ page, order }) => {
       category,
       title,
     };
+    search && (params.q=search)
     order && (params.order = order);
     setsearchParams(params);
-  }, [category, order,title]);
+  }, [category, order,title,search]);
 
   const handletitle=(e)=>{
     let newtitle = [...title];
@@ -118,7 +119,7 @@ const Sidebar = ({ page, order }) => {
               height="20px"
               width="20px"
               textAlign="left"
-           
+              defaultChecked={category == "Kitchen"}
               value={"Kitchen"}
               onChange={handleChange}
               checked={category.includes("Kitchen")}
@@ -130,7 +131,7 @@ const Sidebar = ({ page, order }) => {
               height="20px"
               width="20px"
               textAlign="left"
-            
+              defaultChecked={category == "Lighting"}
               checked={category.includes("Lighting")}
               value={"Lighting"}
               onChange={handleChange}
@@ -142,12 +143,12 @@ const Sidebar = ({ page, order }) => {
               height="20px"
               width="20px"
               textAlign="left"
-           
+              defaultChecked={category == "camp essentials"}
               alignSelf="left"
               value={"camp essentials"}
               onChange={handleChange}
               checked={category.includes("camp essentials")}
-              defaultChecked={category == "camp essentials"}
+            
             />
             <span>Camp-Essentials</span>
           </AccordionPanel>
