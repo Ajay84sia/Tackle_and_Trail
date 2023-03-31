@@ -2,26 +2,21 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+
 import { getproducts } from "../Redux/productReducer/action";
-import {Pagination} from "./Pagination"
+import { Pagination } from "./Pagination";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-import "./product.css"
+import "./product.css";
 import { Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
 import { AccordionIcon } from "@chakra-ui/react";
-
+import { useLocation } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
@@ -32,32 +27,41 @@ import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 
 export const Product = () => {
-  const [searchParams]=useSearchParams()
- 
-  console.log(useSearchParams())
-  const{products}=useSelector((store)=>store.productReducer)
-  const[page,setPage]=useState(1)
-  const initialOrder=searchParams.get("order")
-  const[order,setOrder]=useState(initialOrder||"")
-  const dispatch=useDispatch()
-  let obj={
-    params:{
-      category:searchParams.getAll("category"),
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const { products } = useSelector((store) => store.productReducer);
+  const [page, setPage] = useState(1);
+  const[sorting,setSorting]=useState("")
+  const initialOrder = searchParams.get("order");
+  const [order, setOrder] = useState(initialOrder || "")
+  const dispatch = useDispatch();
+  const obj = {
+    params: {
+      category: searchParams.getAll("category"),
+      title:searchParams.getAll("title"),
+      _sort: searchParams.get("order") && ("price") ,
+      // _sort:searchParams.get("order")&&("reviews"),
+      _order:searchParams.get("order")
       
-    }
-  }
-  
-  useEffect(()=>{
-    dispatch(getproducts(obj,page))
-  },[page])
-const handleSort=(e)=>{
-setOrder(e.target.value)
+    },
+  };
 
-}
+  useEffect(() => {
+    dispatch(getproducts(obj, page));
+  }, [page, location.search]);
+
+  const handleSort = (event) => {
+    const sortingOption = event.target.dataset.sort;
+    // do something with the selected sorting option
+   
+    setOrder(sortingOption);
+  };
+  console.log(order)
+console.log(sorting)
   return (
     <>
- <div className="wrapper">
- <Sidebar page={page}/>
+      <div className="wrapper">
+        <Sidebar page={page} order={order} />
         <div
           style={{
             borderLeft: "1px solid grey",
@@ -72,11 +76,10 @@ setOrder(e.target.value)
               <span>TENTS</span>
               <br />
               <br />
-              
             </div>
-         
+
             <div style={{ textAlign: "right" }} className="top-div">
-            <Menu className="menu">
+              <Menu className="menu">
                 <MenuButton
                   className="menu"
                   as={Button}
@@ -85,13 +88,57 @@ setOrder(e.target.value)
                   Sort By:Brand
                 </MenuButton>
                 <MenuList className="childmenu" zIndex={15} onKeyDown>
-                  <div className="childhover">Relevance</div>
-                  <div className="childhover">Brands</div>
-                  <div className="childhover">Name</div>
-                  <div value={"asc"} onClick={handleSort} className="childhover">Price(Low to High)</div>
-                  <div value={"desc"} onClick={handleSort} className="childhover">Price(High to Low)</div>
-                  <div className="childhover">Top Rated</div>
-                  <div className="childhover">Most Reviewed</div>
+                  <div
+                    className="childhover"
+                    data-sort="relevance"
+                    onClick={handleSort}
+                  >
+                    Relevance
+                  </div>
+                  <div
+                    className="childhover"
+                    
+                    onClick={handleSort}
+                  >
+                    Brands
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="name"
+                    onClick={handleSort}
+                  >
+                    Name
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="asc"
+                    onClick={handleSort}
+                  >
+                    Price(Low to High)
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="desc"
+                    onClick={handleSort}
+                  >
+                    Price(High to Low)
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="top_rated"
+                    onClick={handleSort}
+                    
+                  >
+                    Top Rated
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="desc"
+                    onClick={handleSort}
+                   
+                  >
+                    Most Reviewed
+                  </div>
                 </MenuList>
               </Menu>
             </div>
@@ -128,10 +175,11 @@ setOrder(e.target.value)
                         <Text color="blue.600" fontSize="2xl">
                           {el.price}
                         </Text>
+                        <Text>{el.offer}</Text>
                       </Stack>
                     </CardBody>
-                    <Divider />
-                    <CardFooter></CardFooter>
+                 
+                 
                   </Card>
                 </div>
               );
@@ -139,12 +187,7 @@ setOrder(e.target.value)
           </div>
         </div>
       </div>
-<Pagination page={page} setPage={setPage}/>
+      <Pagination page={page} setPage={setPage} />
     </>
-  )
- 
-  
- 
-  ;
-
+  );
 };
