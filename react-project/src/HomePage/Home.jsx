@@ -1,4 +1,5 @@
 import { Box, Button, Flex, Grid, GridItem, Heading, HStack, Image, Spacer, Text, VStack } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 import { ProductSlider } from "./ProductSlider"
 
 function Home(){
@@ -34,7 +35,9 @@ function Home(){
                         <Heading fontWeight={"bold"} size={"lg"}>ROD AND REEL</Heading>
                         <Heading fontWeight={"bold"} size={"lg"}>TREAD-IN</Heading>
                         <Text fontSize={"lg"}>SAVE UPTO $100 | IN-STORE ONLY</Text>
-                        <Button pos={"relative"} top="1vh" bgColor={"white"} color="black" size={"lg"}>SHOP NOW</Button>
+                        <Link to={"fishing"}>
+                            <Button pos={"relative"} top="1vh" bgColor={"white"} color="black" size={"lg"}>SHOP NOW</Button>
+                        </Link>
                     </VStack>
                 </Box>
                 <Spacer />
@@ -48,7 +51,9 @@ function Home(){
                     <VStack color={"white"} pos={"relative"} bottom="35vh">
                         <Heading fontWeight={"bold"} size={"lg"}>JOHNNY MORRIS</Heading>
                         <Heading fontWeight={"bold"} size={"lg"}>RODS & REELS</Heading>
-                        <Button bgColor={"white"} color="black" pos={"relative"} top="3vh" size={"lg"}>SHOP NOW</Button>
+                        <Link to={"/fishing"}>
+                            <Button bgColor={"white"} color="black" pos={"relative"} top="3vh" size={"lg"}>SHOP NOW</Button>
+                        </Link>
                     </VStack>
                 </Box>
             </Flex>
