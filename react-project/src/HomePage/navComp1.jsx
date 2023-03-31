@@ -1,6 +1,7 @@
 import {Box, Flex, HStack, Spacer, VStack ,Text} from "@chakra-ui/react"
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { fontSize } from "@mui/system";
+import { Link as NavLink } from "react-router-dom";
 function NavComp1(){
     return(
         <Flex h="7vh" textAlign="center">
@@ -20,14 +21,16 @@ function NavComp1(){
             <Spacer />
             <Box width={"52vw"} >
                 <Flex mr={"1vw"} pt={"10px"} gap={"2vw"}>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Boats</Text>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Off Road</Text>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Resorts & Restaurants</Text>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Outdoor Tips</Text>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>CLUB</Text>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Gift Cards</Text>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Help</Text>
-                    <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}> Canada</Text>
+                    <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Boats</Text>
+                    <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Off Road</Text>
+                    <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Resorts & Restaurants</Text>
+                    <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Outdoor Tips</Text>
+                    <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>CLUB</Text>
+                    <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Gift Cards</Text>
+                    <NavLink to={"/admin"}>
+                        <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Admin</Text>
+                    </NavLink>
+                    <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}> Canada</Text>
                 </Flex>
             </Box>
         </Flex>

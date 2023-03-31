@@ -12,6 +12,8 @@ import { Product } from "../Pages/Product";
 import NavComp3 from "./navComp3";
 import { Divider } from "@chakra-ui/react";
 import Sidebar from "../Pages/Sidebar";
+import DynamicCart from "../Admin/DynamicCart";
+
 function NavComp2(){
     const[searchParams,setsearchParams]=useSearchParams()
    
@@ -56,10 +58,10 @@ e.preventDefault()
         <Box  width={"20vw"}>
             <HStack ml={"3vw"} gap={6} justifyContent={"center"} align={"center"}>
                 <Box _hover={{fontWeight:"semibold"}} >
-                    <HiOutlineUserCircle fontSize={"40px"} />
+                    <HiOutlineUserCircle cursor={"pointer"} fontSize={"40px"} />
                 </Box>
-                <Box>
-                    <GiShoppingCart fontSize={"40px"}  />
+                <Box >
+                    <DynamicCart   />
                 </Box>
             </HStack>
         </Box>
