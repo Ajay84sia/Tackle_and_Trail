@@ -226,7 +226,7 @@ if(isLoading){
                   style={{ display: "flex", justifyContent: "space-around" }}
                 >
                 <Link to={`/${endpoint}/${el.id}`}>
-                
+
                   <Card maxW="sm" className="card">
                     <CardBody>
                       <Image
@@ -245,7 +245,7 @@ if(isLoading){
                           $ {el.price}
                         </Text>
                         <Text>{el.offer}</Text>
-                        <Text>{el.description}</Text>
+                     
                         <StarFunc rating={el.rating}/>
                       </Stack>
                     </CardBody>               
