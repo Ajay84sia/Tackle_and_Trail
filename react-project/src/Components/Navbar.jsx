@@ -9,8 +9,9 @@ const Navbar = () => {
     <>
       <NavComp1 />
         <Divider colorScheme="gray.700" variant="solid" />
-      
       <NavComp2 />
+      <Divider colorScheme="gray.700" variant="solid" />
+      <NavComp3 />
       <Divider colorScheme="gray.700" variant="solid" />
     </>
   )

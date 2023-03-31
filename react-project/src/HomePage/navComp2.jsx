@@ -96,9 +96,9 @@ e.preventDefault()
             </HStack>
         </Box>
         </Flex>
-        <NavComp3 />
-      <Divider colorScheme="gray.700" variant="solid" />
-      <Product search={search}/>
+        {/* <NavComp3 /> */}
+      {/* <Divider colorScheme="gray.700" variant="solid" /> */}
+      {/* <Product search={search}/> */}
         </>
        
     )
