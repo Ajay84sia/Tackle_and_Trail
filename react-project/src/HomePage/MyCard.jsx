@@ -72,10 +72,10 @@ import {
                     {save}
               </Text>
                 <Text fontSize={'md'} fontWeight="semibold">
-                    Sale {price}
+                    Sale ${price}
                 </Text>
               <Text fontSize={'md'} fontWeight="semibold" color={'gray.600'}>
-                    Orig. {mrp}
+                    Orig. ${mrp}
               </Text>
             </Stack>
           </Stack>

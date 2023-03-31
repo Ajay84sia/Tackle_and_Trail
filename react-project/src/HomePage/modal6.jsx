@@ -20,6 +20,7 @@ import {
     List,
     ListItem,
   } from '@chakra-ui/react'
+import { NavLink } from 'react-router-dom'
   function Modal6() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
@@ -31,7 +32,9 @@ import {
         <Modal size={"6xl"}  isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent >
-            <ModalHeader fontSize={"28px"}>CLOTHING</ModalHeader>
+            <NavLink to="/clothing" style={{color: '#545e6f', background: '#f0f0f0' }}>
+                <ModalHeader fontSize={"28px"}>CLOTHING</ModalHeader>
+            </NavLink>
             <ModalCloseButton />
             <ModalBody >
               <Flex font-family= "Bebas Neue,Arial,Charcoal,sans-serif" gap={"5vw"} width="100%">
