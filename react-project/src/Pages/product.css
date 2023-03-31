@@ -1,6 +1,6 @@
 .card {
   /* Set the initial position and size */
-  transform: scale(1) translateZ(0);
+  /* transform: scale(1) translateZ(0); */
   /* transition: transform 0.2s ease-in-out; */
 }
 .upper {
@@ -13,7 +13,7 @@
 .card:hover {
   /* Scale up and translate forward */
   transform: scale(1.05) translateZ(10px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
 }
 .wrapper {
   display: flex;

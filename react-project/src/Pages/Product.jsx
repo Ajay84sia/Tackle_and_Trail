@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-
+import { Spinner } from "@chakra-ui/react";
 import { getproducts } from "../Redux/productReducer/action";
-import { Pagination } from "./Pagination";
+import { Page } from "./Pagination";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import "./product.css";
 import { Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+
 import {
   Menu,
   MenuButton,
@@ -31,10 +32,10 @@ import { Center } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 
-export const Product = () => {
+export const Product = ({search}) => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
-  const { products } = useSelector((store) => store.productReducer);
+  const { products,isLoading } = useSelector((store) => store.productReducer);
   const [page, setPage] = useState(1);
   const[sorting,setSorting]=useState("")
   const initialOrder = searchParams.get("order");
@@ -44,29 +45,45 @@ export const Product = () => {
     params: {
       category: searchParams.getAll("category"),
       title:searchParams.getAll("title"),
-      _sort: searchParams.get("order") && ("price") ,
-      // _sort:searchParams.get("order")&&("reviews"),
-      _order:searchParams.get("order")
-      
+      _sort: searchParams.get("order") && ("price"),
+      _order:searchParams.get("order"),
+      q:searchParams.get("q"),
     },
   };
+  const obj2={
+    params:{
+      _sort: searchParams.get("order") && ("reviews"),
+      _order:searchParams.get("order"),
+    }
+  }
 
   useEffect(() => {
-    dispatch(getproducts(obj, page));
+    dispatch(getproducts(obj,obj2, page));
   }, [page, location.search]);
 
   const handleSort = (event) => {
     const sortingOption = event.target.dataset.sort;
-    // do something with the selected sorting option
-   
     setOrder(sortingOption);
   };
   console.log(order)
 console.log(sorting)
+console.log(isLoading)
+
+if(isLoading){
+  console.log(isLoading)
+  return <Spinner
+  style={{textAlign:"center",marginTop:"300px"}}
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>
+}
   return (
     <>
       <div className="wrapper">
-        <Sidebar page={page} order={order} />
+        <Sidebar page={page} order={order} search={search}/>
         <div
           style={{
             borderLeft: "1px solid grey",
@@ -165,20 +182,22 @@ console.log(sorting)
                 <div
                   style={{ display: "flex", justifyContent: "space-around" }}
                 >
-                  <Card maxW="sm" className="card">
+                  <Card className="card">
                     <CardBody>
                       <Image
-                        height="150px"
-                        width="150px"
+                        height="170px"
+                        width="170px"
+                        margin="auto"
+                        textAlign="center"
                         src={el.image}
-                        borderRadius="lg"
+                       
                       />
-                      <Stack mt="6" spacing="3">
+                      <Stack mt="6" spacing="3" style={{textAlign:"left"}}>
                         <Text size="md">{el.title}</Text>
-                        <Text>{el.reviews}</Text>
+                        <Text>({el.reviews})</Text>
                         <Text>{el.category}</Text>
-                        <Text color="blue.600" fontSize="2xl">
-                          {el.price}
+                        <Text color="black" fontSize="2xl">
+                          $ {el.price}
                         </Text>
                         <Text>{el.offer}</Text>
                       </Stack>
@@ -192,7 +211,9 @@ console.log(sorting)
           </div>
         </div>
       </div>
-      <Pagination page={page} setPage={setPage} />
+      
+      <Page page={page} setPage={setPage}  />
     </>
   );
+          
 };

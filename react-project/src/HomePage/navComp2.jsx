@@ -5,10 +5,25 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { GiShoppingCart } from "react-icons/gi";
 import { HiOutlineUserCircle } from "react-icons/hi2";
+import { useSearchParams } from "react-router-dom";
 import {Link as NavLink} from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Product } from "../Pages/Product";
+import NavComp3 from "./navComp3";
+import { Divider } from "@chakra-ui/react";
+import Sidebar from "../Pages/Sidebar";
 function NavComp2(){
+    const[searchParams,setsearchParams]=useSearchParams()
+   
+    const[search,setSearch]=useState("")
+  console.log(search)
+
+  const handleSubmit=(e)=>{
+e.preventDefault()
+  }
     return(
-        <Flex minWidth='max-content' alignItems='center' gap='2' h="15vh">
+        <>
+ <Flex minWidth='max-content' alignItems='center' gap='2' h="15vh" onSubmit={handleSubmit}>
             <Box p='2' ml="2vw">
                      <NavLink to="/"> 
                         <Avatar 
@@ -34,7 +49,7 @@ function NavComp2(){
             <InputLeftElement pt={"6px"} pointerEvents="none">
               <SearchOutlinedIcon />
             </InputLeftElement>
-            <Input variant={"filled"} height={"45px"} width={"55vw"}  type="tel" placeholder="Search..." />
+            <Input  value={search} variant={"filled"} height={"45px"} width={"55vw"}  type="tel" placeholder="Search..." onChange={(e)=>setSearch(e.target.value)}/>
           </InputGroup>
         </HStack>
         <Spacer />
@@ -49,6 +64,11 @@ function NavComp2(){
             </HStack>
         </Box>
         </Flex>
+        <NavComp3 />
+      <Divider colorScheme="gray.700" variant="solid" />
+      <Product search={search}/>
+        </>
+       
     )
 }
 
