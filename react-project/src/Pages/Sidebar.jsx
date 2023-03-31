@@ -55,22 +55,23 @@ const Sidebar = ({ page, order,search }) => {
   };
 
   return (
-    <div style={{ height: "800px", width: "320px" }}>
-      <h1>FILTER BY</h1>
-      <Accordion allowMultiple>
+    <div style={{ height: "800px", width: "320px",marginTop:"40px" }}>
+      <b style={{fontSize:"22px"}}>FILTER BY</b>
+      <Accordion allowMultiple style={{marginTop:"20px"}}>
         <AccordionItem>
-          <h2>
+          <h1>
             <AccordionButton
-              height="50px"
+              height="60px"
               width="300px"
               backgroundColor="white"
             >
-              <Box as="span" flex="1" textAlign="left">
-                <h3>Availability</h3>
+          
+              <Box  flex="1" textAlign="left">
+                <b style={{fontSize:"22px"}}>Availability</b>
               </Box>
-              <AccordionIcon height="30px" width="30px" />
+              <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
-          </h2>
+          </h1>
           <AccordionPanel textAlign="left">
             <Checkbox
               height="20px"
@@ -89,15 +90,15 @@ const Sidebar = ({ page, order,search }) => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              height="40px"
+              height="60px"
               width="300px"
               backgroundColor="white"
               
             >
               <Box as="span" flex="1" textAlign="left">
-                <h3>Category</h3>
+                <b style={{fontSize:"22px"}}>Category</b>
               </Box>
-              <AccordionIcon height="30px" width="30px" />
+              <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
           </h2>
           <AccordionPanel textAlign="left">
@@ -158,15 +159,15 @@ const Sidebar = ({ page, order,search }) => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              height="40px"
+              height="60px"
               width="300px"
               backgroundColor="white"
               
             >
                <Box as="span" flex="1" textAlign="left">
-                <h3>Type</h3>
+                <b style={{fontSize:"22px"}}>Type</b>
               </Box>
-              <AccordionIcon height="30px" width="30px" />
+              <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
           </h2>
           <AccordionPanel textAlign="left">
@@ -193,15 +194,15 @@ const Sidebar = ({ page, order,search }) => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              height="40px"
+              height="60px"
               width="300px"
               backgroundColor="white"
             
             >
               <Box as="span" flex="1" textAlign="left">
-                <h3>Brand</h3>
+                <b style={{fontSize:"22px"}}>Brand</b>
               </Box>
-              <AccordionIcon height="30px" width="30px" />
+              <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
           </h2>
           <AccordionPanel textAlign="left">
@@ -260,15 +261,15 @@ const Sidebar = ({ page, order,search }) => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              height="40px"
+              height="60px"
               width="300px"
               backgroundColor="white"
              
             >
               <Box as="span" flex="1" textAlign="left">
-                <h3>Price</h3>
+                <b style={{fontSize:"22px"}}>Price</b>
               </Box>
-              <AccordionIcon height="30px" width="30px" />
+              <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
           </h2>
           <AccordionPanel textAlign="left">
@@ -318,15 +319,15 @@ const Sidebar = ({ page, order,search }) => {
         <AccordionItem>
           <h2>
             <AccordionButton
-              height="40px"
+              height="60px"
               width="300px"
               backgroundColor="white"
               
             >
               <Box as="span" flex="1" textAlign="left">
-                <h3>Average Ratings</h3>
+                <b style={{fontSize:"22px"}}>Average Ratings</b>
               </Box>
-              <AccordionIcon height="30px" width="30px" />
+              <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
           </h2>
           <AccordionPanel textAlign="left">
@@ -349,7 +350,9 @@ const Sidebar = ({ page, order,search }) => {
             <span>Limited Stock</span>
 
           </AccordionPanel>
+          <hr/>
         </AccordionItem>
+        <hr/>
         <br/>
         
       </Accordion>

@@ -16,6 +16,7 @@ import {
     VStack,
     Image,
   } from '@chakra-ui/react'
+  import { Link } from 'react-router-dom'
   import {
     List,
     ListItem,
@@ -33,7 +34,7 @@ import { NavLink } from 'react-router-dom'
           <ModalOverlay />
           <ModalContent >
             <NavLink to="/fishing" style={{color: '#545e6f', background: '#f0f0f0' }}>
-                <ModalHeader fontSize={"28px"}>FISHING</ModalHeader>
+               <ModalHeader fontSize={"28px"}>FISHING</ModalHeader>
             </NavLink>
             <ModalCloseButton />
             <ModalBody >

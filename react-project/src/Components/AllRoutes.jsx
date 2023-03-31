@@ -10,6 +10,7 @@ import NotFound from "../Pages/NotFound";
 import Outdoor from "../Pages/Outdoor";
 import { Product } from "../Pages/Product";
 import Shooting from "../Pages/Shooting";
+import { SingleProduct } from "../Pages/SingleProduct";
 
 function AllRoutes() {
   return (
@@ -26,7 +27,7 @@ function AllRoutes() {
         <Route path="/outdoor" element={<Outdoor />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product" element={<Product />} />
-        <Route path="/:endpoint/:id" element={<Product />} />
+        <Route path="/:endpoint/:id" element={<SingleProduct />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
