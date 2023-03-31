@@ -10,11 +10,7 @@ import Sidebar from "./Sidebar";
 import "./product.css";
 import { Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList } from "@chakra-ui/react";
 import { AccordionIcon } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
@@ -26,38 +22,38 @@ import { Center } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 
-export const Product = () => {
+export const Product = ({ endpoint }) => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const { products } = useSelector((store) => store.productReducer);
   const [page, setPage] = useState(1);
-  const[sorting,setSorting]=useState("")
+  const [sorting, setSorting] = useState("");
   const initialOrder = searchParams.get("order");
-  const [order, setOrder] = useState(initialOrder || "")
+  const [order, setOrder] = useState(initialOrder || "");
   const dispatch = useDispatch();
+  // const endpoint = "camping"
   const obj = {
     params: {
       category: searchParams.getAll("category"),
-      title:searchParams.getAll("title"),
-      _sort: searchParams.get("order") && ("price") ,
+      title: searchParams.getAll("title"),
+      _sort: searchParams.get("order") && "price",
       // _sort:searchParams.get("order")&&("reviews"),
-      _order:searchParams.get("order")
-      
+      _order: searchParams.get("order"),
     },
   };
 
   useEffect(() => {
-    dispatch(getproducts(obj, page));
+    dispatch(getproducts(endpoint, obj, page));
   }, [page, location.search]);
 
   const handleSort = (event) => {
     const sortingOption = event.target.dataset.sort;
     // do something with the selected sorting option
-   
+
     setOrder(sortingOption);
   };
-  console.log(order)
-console.log(sorting)
+  console.log(order);
+  console.log(sorting);
   return (
     <>
       <div className="wrapper">
@@ -73,7 +69,7 @@ console.log(sorting)
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div className="upper">
-              <span>TENTS</span>
+              <span style={{ textTransform: "uppercase" }}>{endpoint}</span>
               <br />
               <br />
             </div>
@@ -95,11 +91,7 @@ console.log(sorting)
                   >
                     Relevance
                   </div>
-                  <div
-                    className="childhover"
-                    
-                    onClick={handleSort}
-                  >
+                  <div className="childhover" onClick={handleSort}>
                     Brands
                   </div>
                   <div
@@ -127,7 +119,6 @@ console.log(sorting)
                     className="childhover"
                     data-sort="top_rated"
                     onClick={handleSort}
-                    
                   >
                     Top Rated
                   </div>
@@ -135,7 +126,6 @@ console.log(sorting)
                     className="childhover"
                     data-sort="desc"
                     onClick={handleSort}
-                   
                   >
                     Most Reviewed
                   </div>
@@ -178,8 +168,6 @@ console.log(sorting)
                         <Text>{el.offer}</Text>
                       </Stack>
                     </CardBody>
-                 
-                 
                   </Card>
                 </div>
               );

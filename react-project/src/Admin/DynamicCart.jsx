@@ -31,7 +31,7 @@ const DynamicCart = () => {
             bg="red.600"
             rounded="full"
           >
-            5
+            50
           </chakra.span>
         </chakra.span>
     </div>
