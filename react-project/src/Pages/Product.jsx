@@ -14,11 +14,6 @@ import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
 import { AccordionIcon } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";

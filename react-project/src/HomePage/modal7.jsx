@@ -3,7 +3,6 @@ import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
     Button,
@@ -11,20 +10,15 @@ import {
     Text,
     Flex,
     Box,
-    Spacer,
     Grid,
     GridItem,
     Heading,
     VStack,
     Image,
-    Divider,
   } from '@chakra-ui/react'
   import {
     List,
     ListItem,
-    ListIcon,
-    OrderedList,
-    UnorderedList,
   } from '@chakra-ui/react'
   function Modal7() {
     const { isOpen, onOpen, onClose } = useDisclosure()

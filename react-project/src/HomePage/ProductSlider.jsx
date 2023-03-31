@@ -1,8 +1,6 @@
-import { Box, Button, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import MyCard from './MyCard'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../Redux/SliderReducer/action';
 import Carousel from 'react-multi-carousel';
