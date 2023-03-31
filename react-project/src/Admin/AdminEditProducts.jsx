@@ -4,7 +4,8 @@ import DynamicCart from './DynamicCart'
 
 const AdminEditProducts = () => {
   return (
-
+    <div>
+      
     </div>
   )
 }
