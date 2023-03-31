@@ -11,7 +11,7 @@ import {
   
 
   
-  export default function MyCard({image , title , price , mrp}) {
+  export default function MyCard({image , title , price , mrp ,save}) {
     return (
       <Center py={12}>
         <Box
@@ -68,10 +68,13 @@ import {
             {title}
             </Text>
             <Stack spacing={1} direction={'column'} align={'center'}>
+            <Text fontSize={'md'} fontWeight="semibold" color={'#B84D00'}>
+                    {save}
+              </Text>
                 <Text fontSize={'md'} fontWeight="semibold">
                     Sale {price}
                 </Text>
-              <Text fontWeight="semibold" color={'gray.600'}>
+              <Text fontSize={'md'} fontWeight="semibold" color={'gray.600'}>
                     Orig. {mrp}
               </Text>
             </Stack>
