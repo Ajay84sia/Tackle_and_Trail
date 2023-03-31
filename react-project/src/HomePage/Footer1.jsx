@@ -1,6 +1,5 @@
-import { Box, Flex, HStack, Text } from '@chakra-ui/react'
+import { Flex, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
-import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import { AiOutlineMail } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
 import { AiOutlineQuestionCircle } from "react-icons/ai";

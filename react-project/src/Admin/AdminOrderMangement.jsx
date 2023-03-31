@@ -1,5 +1,4 @@
 import {
-    border,
     Box,
     Button,
     Center,

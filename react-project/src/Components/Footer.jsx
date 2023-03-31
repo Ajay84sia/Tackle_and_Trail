@@ -1,4 +1,4 @@
-import { Box, Divider } from '@chakra-ui/react'
+import { Box} from '@chakra-ui/react'
 import React from 'react'
 import { Footer1 } from '../HomePage/Footer1'
 import Footer2 from '../HomePage/Footer2'

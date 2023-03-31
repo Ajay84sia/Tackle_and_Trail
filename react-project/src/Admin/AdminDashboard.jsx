@@ -1,4 +1,4 @@
-import { Avatar, Button, Flex, Heading, Image, Link } from "@chakra-ui/react";
+import { Avatar, Button, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Link as NavLink } from "react-router-dom";
 import AdminTabs from "./AdminTabs";
