@@ -1,49 +1,67 @@
-import axios from "axios";
-import "./product.css";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+
+import { getproducts } from "../Redux/productReducer/action";
+import { Pagination } from "./Pagination";
 import { useState } from "react";
+import Sidebar from "./Sidebar";
+import "./product.css";
 import { Button } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
-import { Pagination } from "./Pagination";
-// import {Pagination} from "./Pagination"
-// import Pagination from "./pagination";
 import { AccordionIcon } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
 import { Heading, Text, Divider } from "@chakra-ui/react";
-import Sidebar from "./Sidebar";
+
 import { Center } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 
 export const Product = () => {
-  const [data, setData] = useState([]);
-  const [product, setProduct] = useState([]);
-
-  const temp = async () => {
-    let res = await axios.get("https://tackle-and-trail.onrender.com/camping");
-    console.log(res);
-    setData(res.data);
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const { products } = useSelector((store) => store.productReducer);
+  const [page, setPage] = useState(1);
+  const[sorting,setSorting]=useState("")
+  const initialOrder = searchParams.get("order");
+  const [order, setOrder] = useState(initialOrder || "")
+  const dispatch = useDispatch();
+  const obj = {
+    params: {
+      category: searchParams.getAll("category"),
+      title:searchParams.getAll("title"),
+      _sort: searchParams.get("order") && ("price") ,
+      // _sort:searchParams.get("order")&&("reviews"),
+      _order:searchParams.get("order")
+      
+    },
   };
+
   useEffect(() => {
-    temp();
-  }, []);
-console.log(product)
+    dispatch(getproducts(obj, page));
+  }, [page, location.search]);
+
+  const handleSort = (event) => {
+    const sortingOption = event.target.dataset.sort;
+    // do something with the selected sorting option
+   
+    setOrder(sortingOption);
+  };
+  console.log(order)
+console.log(sorting)
   return (
     <>
       <div className="wrapper">
-        <Sidebar />
+        <Sidebar page={page} order={order} />
         <div
           style={{
             borderLeft: "1px solid grey",
@@ -58,7 +76,6 @@ console.log(product)
               <span>TENTS</span>
               <br />
               <br />
-              <span>{data.length} Results</span>
             </div>
 
             <div style={{ textAlign: "right" }} className="top-div">
@@ -70,14 +87,58 @@ console.log(product)
                 >
                   Sort By:Brand
                 </MenuButton>
-                <MenuList className="childmenu" zIndex={15}>
-                  <div className="childhover">Relevance</div>
-                  <div className="childhover">Brands</div>
-                  <div className="childhover">Name</div>
-                  <div className="childhover">Price(Low to High)</div>
-                  <div className="childhover">Price(High to Low)</div>
-                  <div className="childhover">Top Rated</div>
-                  <div className="childhover">Most Reviewed</div>
+                <MenuList className="childmenu" zIndex={15} onKeyDown>
+                  <div
+                    className="childhover"
+                    data-sort="relevance"
+                    onClick={handleSort}
+                  >
+                    Relevance
+                  </div>
+                  <div
+                    className="childhover"
+                    
+                    onClick={handleSort}
+                  >
+                    Brands
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="name"
+                    onClick={handleSort}
+                  >
+                    Name
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="asc"
+                    onClick={handleSort}
+                  >
+                    Price(Low to High)
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="desc"
+                    onClick={handleSort}
+                  >
+                    Price(High to Low)
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="top_rated"
+                    onClick={handleSort}
+                    
+                  >
+                    Top Rated
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="desc"
+                    onClick={handleSort}
+                   
+                  >
+                    Most Reviewed
+                  </div>
                 </MenuList>
               </Menu>
             </div>
@@ -94,7 +155,7 @@ console.log(product)
             }}
             className="bottom-div"
           >
-            {product.map((el) => {
+            {products.map((el) => {
               return (
                 <div
                   style={{ display: "flex", justifyContent: "space-around" }}
@@ -110,24 +171,23 @@ console.log(product)
                       <Stack mt="6" spacing="3">
                         <Text size="md">{el.title}</Text>
                         <Text>{el.reviews}</Text>
+                        <Text>{el.category}</Text>
                         <Text color="blue.600" fontSize="2xl">
                           {el.price}
                         </Text>
+                        <Text>{el.offer}</Text>
                       </Stack>
                     </CardBody>
-                    <Divider />
-                    <CardFooter></CardFooter>
-                  </Card>
                  
+                 
+                  </Card>
                 </div>
               );
             })}
           </div>
         </div>
       </div>
-      <Pagination setProducts={setProduct} fulllength={data}
-
-/>
+      <Pagination page={page} setPage={setPage} />
     </>
   );
 };

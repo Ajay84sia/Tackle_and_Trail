@@ -1,7 +1,8 @@
-import { Button, Flex, Heading, Image} from "@chakra-ui/react";
+import { Avatar, Button, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
+import { Link as NavLink } from "react-router-dom";
 import AdminTabs from "./AdminTabs";
-import Logo from './Image/logo.png'
+import Logo from "./Image/logo.png";
 
 const AdminDashboard = () => {
   return (
@@ -15,10 +16,18 @@ const AdminDashboard = () => {
           padding: "15px",
           justifyContent: "space-between",
           position: "fixed",
-          zIndex: "100"
+          zIndex: "100",
         }}
       >
-        <Image src={Logo} alt="logo" width={"120px"} cursor="pointer" borderRadius={"10px"}/>
+        <NavLink to="/admin">
+          <Avatar
+            height="8vh"
+            width="8vw"
+            src={Logo}
+            cursor="pointer"
+            marginTop={"-1"}
+          />
+        </NavLink>
         <Heading as="h1">Admin Dashboard</Heading>
         <Button
           backgroundColor="white"
@@ -30,8 +39,7 @@ const AdminDashboard = () => {
           Logout
         </Button>
       </Flex>
-      <AdminTabs/>
-
+      <AdminTabs />
     </>
   );
 };

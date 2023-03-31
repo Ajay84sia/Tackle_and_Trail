@@ -1,49 +1,29 @@
-import React, { useEffect } from "react";
-import "./product.css";
-import axios from "axios";
-import { useState } from "react";
-export const Pagination = ({ setProducts, fulllength }) => {
-  const [page, setPage] = useState(1);
+import { useSelector } from "react-redux";
+import { Button } from "@chakra-ui/react";
 
-  const handleChange = (value) => {
-    setPage(page + value);
-  };
-  console.log(page);
-  const data = async () => {
-    try {
-      let res = await axios.get(
-        `https://tackle-and-trail.onrender.com/camping?_page=${page}&_limit=9`
-      );
-      setProducts(res.data);
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    data();
-  }, [page]);
+export const Pagination = ({ page, setPage }) => {
+  const { totalPage } = useSelector((store) => store.productReducer);
+  let allpages = Math.ceil(totalPage / 10);
+  let arr = new Array(allpages).fill(0);
   return (
-    <div>
-      <div className="pagination">
-        <button
-          disabled={page == 1}
-          className="button"
-          onClick={() => handleChange(-1)}
-        >
-          Prev
-        </button>
-        <button className="button">{page}</button>
-        <button
-          disabled={page === Math.ceil(fulllength.length / 9)}
-          className="button"
-          onClick={() => handleChange(1)}
-        >
-          Next
-        </button>
-      </div>
-    </div>
+    <>
+      {arr.map((e, index) => {
+        return (
+          < >
+            <Button
+              style={{
+                backgroundColor: page === index + 1 ? "grey" : "white",
+                border: "1px solid black",
+                textAlign: "center",
+              
+              }}
+              onClick={() => setPage(index + 1)}
+            >
+              {index + 1}
+            </Button>
+          </>
+        );
+      })}
+    </>
   );
 };
-
-
