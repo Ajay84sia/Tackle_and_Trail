@@ -10,7 +10,7 @@ import { Cart } from './Pages/Cart';
 function App() {
   return (
     <div className="App">
-      <AllRoutes />
+      {/* <AllRoutes /> */}
       <Cart/>
      
     </div>
