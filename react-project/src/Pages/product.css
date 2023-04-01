@@ -1,40 +1,26 @@
-.card {
-  /* Set the initial position and size */
-  /* transform: scale(1) translateZ(0); */
-  /* transition: transform 0.2s ease-in-out; */
-}
+
 .upper {
   color: rgb(64, 61, 61);
   font-size: 25px;
-  padding-left: 40px;
   margin-top: 40px;
   text-align: left;
 }
 .card:hover {
-  /* Scale up and translate forward */
   transform: scale(1.05) translateZ(10px);
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
 }
 .wrapper {
   display: flex;
-  justify-content: space-between;
-  margin-top: 31vh;
+justify-content: space-between;
 }
 
 .wrapper::before {
-  /* content: ""; */
   border-left: 3px solid black;
-
   height: 100%;
   margin-right: 10px;
 }
 .menu {
   margin-top:0px;
   padding-top: 0px;
-  /* height: 100px;
-  width: 190px; */
-  margin-right: 10px;
- 
 }
 .childmenu {
   border: "1px solid black";
@@ -45,8 +31,7 @@
   height: 300px;
   width: 180px;
   text-align: left;
-  border: 1px solid black;
-  /* border: 1px solid pink; */
+  
 }
 .childhover:hover {
   background-color: grey;

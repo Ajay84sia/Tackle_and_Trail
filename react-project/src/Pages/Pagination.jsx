@@ -19,6 +19,7 @@ export const Page = ({page,setPage}) => {
   }));
   const classes = useStyles();
   const handleChange = (event, value) => {
+    console.log(value)
    setPage(value);
   };
   return (
