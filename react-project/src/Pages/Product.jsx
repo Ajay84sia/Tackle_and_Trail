@@ -66,8 +66,7 @@ const getCurrentPage=(value)=>{
   return value
 }
 
-
-export const Product = ({endpoint}) => {
+export const Product = ({ endpoint, categories }) => {
   const{search}=useContext(SearchContext)
   const [searchParams,setsearchParams] = useSearchParams();
   const location = useLocation();

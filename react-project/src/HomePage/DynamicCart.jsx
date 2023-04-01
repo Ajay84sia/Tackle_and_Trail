@@ -1,8 +1,18 @@
 import React from "react";
 import { Icon, chakra } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartGetReq } from "../Redux/CartReducer/action";
 
 const DynamicCart = () => {
+  const dispatch = useDispatch();
+  const { cart } = useSelector((store) => store.cartReducer);
+
+
+  useEffect(() => {
+    dispatch(cartGetReq());
+  }, []);
+
   return (
     <div>
       <chakra.span pos="relative" display="inline-block">
@@ -32,7 +42,7 @@ const DynamicCart = () => {
           bg="red.600"
           rounded="full"
         >
-          50
+          {cart.length}
         </chakra.span>
       </chakra.span>
     </div>

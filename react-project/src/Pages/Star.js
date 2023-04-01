@@ -1,30 +1,36 @@
 import React from "react";
-import { FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { AiOutlineStar } from "react-icons/ai";
 import styled from "styled-components";
+import { StarIcon } from "@chakra-ui/icons";
+import { Flex , Box, Text} from "@chakra-ui/react";
 
-const Star = ({ stars, review }) => {
-  const ratingStar = Array.from({ length: 5 }, (elem, index) => {
-    
-    let number = index + 0.5;
+function StarFunc({ rating }) {
+  const maxRating = 5;
 
-    return (
-      <span key={index}>
-        {stars >= index + 1
-          ? ( <FaStar className="icon" />)
-          : stars >= number
-          ?( <FaStarHalfAlt className="icon"/> )
-          : (<AiOutlineStar className="icon"/> 
-          )}
-      </span>
-    );
-  });
+  return (
+    <Flex align="center">
+      {[...Array(maxRating)].map((_, index) => {
+        const isFilled = index < Math.floor(rating);
+
+        return (
+          <Box key={index} color={isFilled ? "grey" : "gray.300"} mr={1}>
+            <StarIcon style={{ height: "10px", width: "10px" }} />
+          </Box>
+        );
+      })}
+    </Flex>
+  );
+}
+
+const Star = ({ stars, reviews }) => {
+
+
   return (
     <Wrapper>
-        <div className="icon-style">
-            {ratingStar}
-            <p>{3.9}({156}) Write Review</p>
-        </div>
+      <div className="icon-style">
+        <StarFunc rating={stars} />
+        &nbsp;
+        <p>{`${stars} (${reviews})`}</p>
+      </div>
     </Wrapper>
   )
 };
