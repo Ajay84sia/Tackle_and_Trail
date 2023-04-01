@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADMIN_DELETE_REQUEST, ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST } from "./actionTypes"
+import { ADMIN_DELETE_REQUEST, ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST,ADMIN_PATCH_REQUEST } from "./actionTypes"
 
 
 
@@ -53,3 +53,15 @@ export const adminDelReq = (endpoint, id) => (dispatch) => {
         dispatch({ type: ADMIN_FAILURE_REQUEST })
     })
 }
+export const adminEditReq=(id,dataObj)=>(dispatch)=>{
+    dispatch({type : ADMIN_REQUEST});
+ 
+   return axios.patch(`http://localhost:8080/products/${id}`, dataObj)
+     .then(()=>{
+       dispatch({type : ADMIN_PATCH_REQUEST  })
+     })
+     .catch((err)=> {
+       dispatch({type : ADMIN_FAILURE_REQUEST})
+     })
+ }
+ 
