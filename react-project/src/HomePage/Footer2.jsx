@@ -3,6 +3,7 @@ import React from 'react'
 import {FcIphone} from "react-icons/fc";
 import {FcBookmark} from "react-icons/fc";
 import {FcSms} from "react-icons/fc";
+import { NavLink } from 'react-router-dom';
 
 const Footer2 = () => {
   return (
@@ -34,14 +35,14 @@ const Footer2 = () => {
                     RESOURCES
                 </Heading>
                 <List spacing={3} pt="3vh">
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Order Status</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Return</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Shipping Information</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Product Subscription</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Size Chart</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Embroidery Services</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Rod & Reel Repair</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Boat & Boat Centers</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>OutDoor Tips</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Gift Registry</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Online Catelog</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Business Sales</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Online Creation</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Mititary Discounts</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Resturants</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Used Guns</ListItem>
                     <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Tracker Off-Road</ListItem>
                 </List>
             </VStack>
@@ -52,15 +53,15 @@ const Footer2 = () => {
                     ABOUT US
                 </Heading>
                 <List spacing={3} pt="3vh">
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Order Status</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Return</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Shipping Information</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Product Subscription</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Size Chart</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Embroidery Services</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Rod & Reel Repair</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Boat & Boat Centers</ListItem>
-                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Tracker Off-Road</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Know Us</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Careers</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Company News</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Find a Store</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>About our Founder</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Our Community</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Conversations</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Affiliated Program</ListItem>
+                    <ListItem cursor={"pointer"} _hover={{textDecoration:"underline"}}>Cabela's</ListItem>
                 </List>
             </VStack>
             </GridItem>
