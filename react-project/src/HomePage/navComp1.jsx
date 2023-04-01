@@ -27,7 +27,7 @@ function NavComp1(){
                     <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Outdoor Tips</Text>
                     <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>CLUB</Text>
                     <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Gift Cards</Text>
-                    <NavLink to={"/admin"}>
+                    <NavLink to={"/adminlogin"}>
                         <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}>Admin</Text>
                     </NavLink>
                     <Text fontSize={"16px"} cursor={"pointer"} _hover={{textDecoration:"underline"}}> Canada</Text>

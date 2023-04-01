@@ -7,7 +7,7 @@ const Fishing = () => {
   return (
     <>
     <Navbar/>
-    <Product endpoint={"fishing"}/>
+    <Product endpoint={"fishing"} categories={["fishing-rod", "fishing-reel", "fishing-bait"]}/>
     <Footer/>
 
     </>

@@ -3,62 +3,82 @@ import styled from "styled-components";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
-export const SingleProductPage = () => {
+export const SingleProduct = () => {
   const params = useParams();
 
-  console.log(params)
+  const { products } = useSelector((store) => store.productReducer);
+  const [quantity, setQuantity] = useState(1);
+  console.log(products);
+
+  const handleAddToCart = () => {};
 
   return (
-    <Container>
-      <Wrapper>
-        <ImgContainer>
-          <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/4410647.json?$BPSSite_Rec140$" />
-          <ProductDetails>
-            <h1>Product Details</h1>
-            <p>
-              Offering incredible velocities of up to 405 fps, the Killer
-              Instinct® Lethal 405 Crossbow Package is rugged, lightweight, and
-              quiet. The lightweight composite frame features an over molded
-              grip and adjustable X-Lok forearm piece for maximum comfort and
-              control, while the included 4x32 scope extends your overall range.
-              Integrated rubber suppressors boast quiet, stealthy performance
-              and lightweight carbon bolts offer improved accuracy. Plus, a
-              lightweight, consistent trigger ensures reduced anticipation and
-              steady control. This crossbow package includes a rope cocker,
-              3-bolt quiver, string suppressors, 3 Killer Instinct HYPR Lite
-              Carbon Crossbolts with field tips, and rail lubricant, ensuring
-              you're ready for target practice, right out of the box!
-            </p>
-          </ProductDetails>
-        </ImgContainer>
-        <Hr />
-        <InfoContainer>
-          <Title>Killer Instinct Lethal 405 Crossbow Package</Title>
-          <RatingOfProduct>
-            <StarRating>######</StarRating>
-            <StarRatinView>3.9(398)</StarRatinView>
-            <WirteReview>Write Review</WirteReview>
-          </RatingOfProduct>
-          <Desc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta fuga,
-            amet mollitia cupiditate iure ea molestias iusto possimus doloremque
-            nam explicabo enim harum dolorem consequatur. Qui porro vel vitae
-            accusamus.
-          </Desc>
-          <Price>$ 34.99</Price>
-          <ProductQuantity>Quantity:</ProductQuantity>
-          <AddConntainer>
-            <AmountContainer>
-              <RemoveIcon />
-              <Amonunt>1</Amonunt>
-              <AddIcon />
-            </AmountContainer>
-            <Button>Add to cart</Button>
-          </AddConntainer>
-        </InfoContainer>
-      </Wrapper>
-    </Container>
+    <>
+      <Navbar />
+      <Container style={{height: "auto", marginTop: "25vh"}}>
+        <Wrapper>
+          <ImgContainer>
+            <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/4410647.json?$BPSSite_Rec140$" />
+            <ProductDetails>
+              <h1>Product Details</h1>
+              <p>
+                Offering incredible velocities of up to 405 fps, the Killer
+                Instinct® Lethal 405 Crossbow Package is rugged, lightweight,
+                and quiet. The lightweight composite frame features an over
+                molded grip and adjustable X-Lok forearm piece for maximum
+                comfort and control, while the included 4x32 scope extends your
+                overall range. Integrated rubber suppressors boast quiet,
+                stealthy performance and lightweight carbon bolts offer improved
+                accuracy. Plus, a lightweight, consistent trigger ensures
+                reduced anticipation and steady control. This crossbow package
+                includes a rope cocker, 3-bolt quiver, string suppressors, 3
+                Killer Instinct HYPR Lite Carbon Crossbolts with field tips, and
+                rail lubricant, ensuring you're ready for target practice, right
+                out of the box!
+              </p>
+            </ProductDetails>
+          </ImgContainer>
+          <Hr />
+          <InfoContainer>
+            <Title>Killer Instinct Lethal 405 Crossbow Package</Title>
+            <RatingOfProduct>
+              <StarRating>######</StarRating>
+              <StarRatinView>3.9(398)</StarRatinView>
+              <WirteReview>Write Review</WirteReview>
+            </RatingOfProduct>
+            <Desc>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+              fuga, amet mollitia cupiditate iure ea molestias iusto possimus
+              doloremque nam explicabo enim harum dolorem consequatur. Qui porro
+              vel vitae accusamus.
+            </Desc>
+            <Price>$ 34.99</Price>
+            <ProductQuantity>Quantity:</ProductQuantity>
+            <AddConntainer>
+              <AmountContainer>
+                <button
+                  onClick={() => setQuantity(quantity - 1)}
+                  disabled={quantity === 1}
+                >
+                  <RemoveIcon />
+                </button>
+                <Amonunt>{quantity}</Amonunt>
+                <button onClick={() => setQuantity(quantity + 1)}>
+                  <AddIcon />
+                </button>
+              </AmountContainer>
+              <Button onClick={handleAddToCart}>Add to cart</Button>
+            </AddConntainer>
+          </InfoContainer>
+        </Wrapper>
+      </Container>
+      <Footer />
+    </>
   );
 };
 
@@ -74,7 +94,7 @@ const Wrapper = styled.div`
 `;
 const ImgContainer = styled.div`
   flex: 1;
-  border-right: 1px solid black;
+  /* border-right: 1px solid black; */
 `;
 const Image = styled.img`
   width: 90%;
@@ -157,7 +177,7 @@ const WirteReview = styled.a`
 const ProductQuantity = styled.h3``;
 
 const ProductDetails = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin-top: 30px;
   margin-right: 20px;
 `;

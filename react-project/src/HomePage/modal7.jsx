@@ -26,14 +26,14 @@ import { NavLink } from 'react-router-dom'
     return (
       <>
         <Button variant={"unstyled"} onClick={onOpen}>
-            <Text fontWeight={"semibold"} fontSize="19px">Footware</Text>
+            <Text fontWeight={"semibold"} fontSize="19px">Footwear</Text>
         </Button>
         <Box   >
         <Modal size={"6xl"}  isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent >
-            <NavLink to="/footware" style={{color: '#545e6f', background: '#f0f0f0' }}>
-                <ModalHeader fontSize={"28px"}>FOOTWARE</ModalHeader>
+            <NavLink style={{color: '#545e6f', background: '#f0f0f0' }}>
+                <ModalHeader fontSize={"28px"}>FOOTWEAR</ModalHeader>
             </NavLink>
             <ModalCloseButton />
             <ModalBody >

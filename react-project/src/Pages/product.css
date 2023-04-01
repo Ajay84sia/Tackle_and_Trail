@@ -18,10 +18,11 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
+  margin-top: 31vh;
 }
 
 .wrapper::before {
-  content: "";
+  /* content: ""; */
   border-left: 3px solid black;
 
   height: 100%;

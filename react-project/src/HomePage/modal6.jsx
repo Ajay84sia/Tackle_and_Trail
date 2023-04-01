@@ -32,7 +32,7 @@ import { NavLink } from 'react-router-dom'
         <Modal size={"6xl"}  isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent >
-            <NavLink to="/clothing" style={{color: '#545e6f', background: '#f0f0f0' }}>
+            <NavLink  style={{color: '#545e6f', background: '#f0f0f0' }}>
                 <ModalHeader fontSize={"28px"}>CLOTHING</ModalHeader>
             </NavLink>
             <ModalCloseButton />
