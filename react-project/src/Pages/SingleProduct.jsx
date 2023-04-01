@@ -4,7 +4,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useParams } from "react-router-dom";
 
-export const SingleProductPage = () => {
+export const SingleProduct = () => {
   const params = useParams();
 
   console.log(params)

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import "./product.css";
 import { Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Menu,
@@ -32,6 +33,7 @@ import { Heading, Text, Divider } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
+import { SearchContext } from "../Contextapi/SearchContext";
 
 function StarFunc({ rating }) {
   const maxRating = 5;
@@ -55,8 +57,9 @@ function StarFunc({ rating }) {
 
 
 
-export const Product = ({endpoint, search}) => {
-  const [searchParams] = useSearchParams();
+export const Product = ({endpoint}) => {
+  const{search}=useContext(SearchContext)
+  const [searchParams,setsearchParams] = useSearchParams();
   const location = useLocation();
   const { products,isLoading } = useSelector((store) => store.productReducer);
   const [page, setPage] = useState(1);
@@ -74,11 +77,11 @@ export const Product = ({endpoint, search}) => {
       q:searchParams.get("q"),
     },
   };
-
+console.log(search)
   const handleSort = (event) => {
     const sortType = event.target.dataset.sort;
     const orderdata=event.target.dataset.value1
-  
+ 
     if (sort === sortType) {
       setOrder(orderdata);
     } else {
@@ -86,10 +89,19 @@ export const Product = ({endpoint, search}) => {
       setOrder("");
     }
   };
+  console.log(order)
+
+useEffect(()=>{
+  const timeoutId = setTimeout(()=>{
+    console.log("hv")
+   setsearchParams({q:search})
+  },500)
+  return ()=>clearTimeout(timeoutId)
+},[search])
 
   useEffect(() => {
     dispatch(getproducts(endpoint,obj, page));
-  }, [page, location.search]);
+  }, [,page, location.search]);
 
 console.log(sort)
   console.log(order)
@@ -110,8 +122,8 @@ if(isLoading){
   return (
     <>
       <div className="wrapper">
-        <Sidebar page={page} order={order} search={search}/>
-        <div
+        <Sidebar page={page} order={order} search={search} style={{marginTop:"80px"}} className="sidebar"/>
+        <div className="carddata"
           style={{
             borderLeft: "1px solid grey",
             height: "auto",
@@ -122,12 +134,12 @@ if(isLoading){
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div className="upper">
-            <span style={{ textTransform: "uppercase" }}>{endpoint}</span>
+            {/* <span style={{ textTransform: "uppercase" }}>{endpoint}</span> */}
               <br />
               <br />
             </div>
 
-            <div style={{ textAlign: "right" }} className="top-div">
+            <div style={{ textAlign: "right" }} >
               <Menu className="menu">
                 <MenuButton
                   className="menu"
@@ -213,6 +225,8 @@ if(isLoading){
                 <div
                   style={{ display: "flex", justifyContent: "space-around" }}
                 >
+                <Link to={`/${endpoint}/${el.id}`}>
+
                   <Card maxW="sm" className="card">
                     <CardBody>
                       <Image
@@ -231,18 +245,19 @@ if(isLoading){
                           $ {el.price}
                         </Text>
                         <Text>{el.offer}</Text>
-                        <Text>{el.description}</Text>
+                     
                         <StarFunc rating={el.rating}/>
                       </Stack>
                     </CardBody>               
                   </Card>
+                  </Link>
                 </div>
               );
             })}
           </div>
         </div>
       </div>
-      
+     
       <Page page={page} setPage={setPage}  />
     </>
   );

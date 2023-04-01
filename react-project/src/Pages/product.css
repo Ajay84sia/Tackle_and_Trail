@@ -28,11 +28,12 @@
   margin-right: 10px;
 }
 .menu {
-  margin-top: 40px;
-  height: 45px;
-  width: 180px;
+  margin-top: 10px;
+  height: 70px;
+  width: 190px;
   margin-right: 10px;
   background-color: white;
+  font-size: 20px;
 }
 .childmenu {
   border: "1px solid black";

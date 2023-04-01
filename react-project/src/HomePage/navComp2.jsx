@@ -23,12 +23,13 @@ import { Divider } from "@chakra-ui/react";
 import Sidebar from "../Pages/Sidebar";
 import DynamicCart from "../Admin/DynamicCart";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useContext } from "react";
+import { SearchContext } from "../Contextapi/SearchContext";
 function NavComp2(){
-    const[searchParams,setsearchParams]=useSearchParams()
+   const{search,setSearch}=useContext(SearchContext)
     const { user, loginWithRedirect, isAuthenticated, isLoading, logout } =
     useAuth0();
-    const[search,setSearch]=useState("")
+  
   console.log(search)
 
   const handleSubmit=(e)=>{
@@ -96,9 +97,6 @@ e.preventDefault()
             </HStack>
         </Box>
         </Flex>
-        {/* <NavComp3 /> */}
-      {/* <Divider colorScheme="gray.700" variant="solid" /> */}
-      {/* <Product search={search}/> */}
         </>
        
     )

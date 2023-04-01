@@ -11,7 +11,7 @@ const Navbar = () => {
         <Divider colorScheme="gray.700" variant="solid" />
       <NavComp2 />
       <Divider colorScheme="gray.700" variant="solid" />
-      <NavComp3 />
+      <NavComp3/>
       <Divider colorScheme="gray.700" variant="solid" />
     </>
   )
