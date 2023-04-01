@@ -11,7 +11,7 @@ function Home(){
                 bgRepeat="no-repeat"
                 h="100%"
                 w="100%"
-                mt={"4vh"}
+                mt={"31vh"}
                 cursor="pointer"
                 border={"1px solid black"}
             >

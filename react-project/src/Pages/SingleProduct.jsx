@@ -4,13 +4,23 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import Star from "./Star";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+
 
 
 export const SingleProductPage = ({stars,review}) => {
    const [quanity,setQuanity] = useState(1);
+
   const params = useParams();
 
-  console.log(params)
+  const { products } = useSelector((store) => store.productReducer);
+  
+  console.log(products);
+
+  const handleAddToCart = () => {};
 
    const handleRemove = () => {
        setQuanity(quanity-1);
@@ -24,6 +34,9 @@ export const SingleProductPage = ({stars,review}) => {
     }
 
   return (
+    <>
+      <Navbar />
+      <Container style={{height: "auto", marginTop: "25vh"}}>
     <Container>
       <Wrapper>
         <ImgContainer>
@@ -76,6 +89,9 @@ export const SingleProductPage = ({stars,review}) => {
               you're ready for target practice, right out of the box!
             </ProductDesc>
     </Container>
+         <Footer />
+    </>
+
   );
 };
 

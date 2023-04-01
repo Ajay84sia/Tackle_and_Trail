@@ -2,14 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
-
-
-const Container = styled.div`
-
-
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -19,7 +16,7 @@ const Title = styled.h1`
   font-size: 30px;
   font-weight: 300;
   text-align: center;
-  font-weight:bolder;
+  font-weight: bolder;
 `;
 
 const Top = styled.div`
@@ -100,13 +97,9 @@ const ProductArrivalDetails = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 `;
- 
 
 const ProductArrivalPlace = styled.p``;
-
-
 
 const ProductAmountContainer = styled.div`
   display: flex;
@@ -141,17 +134,16 @@ const Summary = styled.div`
   height: 50vh;
 `;
 
-
 const SummaryTitle = styled.h1`
-font-weight:200;
+  font-weight: 200;
 `;
 
 const SummaryItem = styled.div`
-margin: 30px 0px;
-display: flex;
-justify-content: space-between;
-font-weight: ${props=>props.type === "total" && "500"};
-font-size: ${props=>props.type ==="total" && "24px"};
+  margin: 30px 0px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: ${(props) => props.type === "total" && "500"};
+  font-size: ${(props) => props.type === "total" && "24px"};
 `;
 
 const SummaryItemText = styled.span``;
@@ -159,29 +151,29 @@ const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 
 const ButtonSummary = styled.button`
-width:100%;
-padding: 10px;
-background-color: black;
-color: white;
-font-weight: 100;
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-weight: 100;
 `;
 
 const TopContainer = styled.div`
-    width: 90%;
-    height: 100px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    margin: auto;
-`
+  width: 90%;
+  height: 100px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+`;
 
 const HeadersContainer = styled.div``;
-
 
 export const Cart = () => {
   return (
     <>
-      <Container>
+      <Navbar />
+      <Container style={{ height: "auto", marginTop: "25vh" }}>
         <Wrapper>
           <Title>SHOPPING CART</Title>
           <Top>
@@ -197,22 +189,14 @@ export const Cart = () => {
                 <ProductDetail>
                   <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/2610680.json?$BPSite_CartTN,w_200,dpr_2.0$" />
                   <Details>
-                    <ProductName>
-                      JESSIE THUNDER SHOES
-                    </ProductName>
-                    <ProductId>
-                     131241
-                    </ProductId>
-                    <ProductSize>
-                      Remove
-                    </ProductSize>
+                    <ProductName>JESSIE THUNDER SHOES</ProductName>
+                    <ProductId>131241</ProductId>
+                    <ProductSize>Remove</ProductSize>
                   </Details>
                 </ProductDetail>
                 <ProductArrivalDetails>
-                    <LocalShippingIcon/>
-                    <ProductArrivalPlace>
-                       Ship To Address
-                    </ProductArrivalPlace>
+                  <LocalShippingIcon />
+                  <ProductArrivalPlace>Ship To Address</ProductArrivalPlace>
                 </ProductArrivalDetails>
                 <PriceDetail>
                   <ProductAmountContainer>
@@ -228,22 +212,14 @@ export const Cart = () => {
                 <ProductDetail>
                   <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/2610680.json?$BPSite_CartTN,w_200,dpr_2.0$" />
                   <Details>
-                    <ProductName>
-                      JESSIE THUNDER SHOES
-                    </ProductName>
-                    <ProductId>
-                     131241
-                    </ProductId>
-                    <ProductSize>
-                      Remove
-                    </ProductSize>
+                    <ProductName>JESSIE THUNDER SHOES</ProductName>
+                    <ProductId>131241</ProductId>
+                    <ProductSize>Remove</ProductSize>
                   </Details>
                 </ProductDetail>
                 <ProductArrivalDetails>
-                    <LocalShippingIcon/>
-                    <ProductArrivalPlace>
-                       Ship To Address
-                    </ProductArrivalPlace>
+                  <LocalShippingIcon />
+                  <ProductArrivalPlace>Ship To Address</ProductArrivalPlace>
                 </ProductArrivalDetails>
                 <PriceDetail>
                   <ProductAmountContainer>
@@ -269,7 +245,7 @@ export const Cart = () => {
                 <SummaryItemText>Shipping Discount</SummaryItemText>
                 <SummaryItemPrice>Free</SummaryItemPrice>
               </SummaryItem>
-              <SummaryItem type="total" >
+              <SummaryItem type="total">
                 <SummaryItemText>Cart Total</SummaryItemText>
                 <SummaryItemPrice>$ 80</SummaryItemPrice>
               </SummaryItem>
@@ -278,6 +254,7 @@ export const Cart = () => {
           </Bottom>
         </Wrapper>
       </Container>
+      <Footer />
     </>
   );
 };
