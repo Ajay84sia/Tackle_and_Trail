@@ -9,6 +9,8 @@ import { store } from './Redux/store';
 import { ChakraProvider } from "@chakra-ui/react"
 import { Auth0Provider } from "@auth0/auth0-react";
 import AuthContextProvider from './Contextapi/AuthContext';
+import { SearchContextProvider } from './Contextapi/SearchContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
@@ -22,9 +24,11 @@ root.render(
     <Provider store={store}>
       <ChakraProvider>
         <BrowserRouter>
-          <AuthContextProvider>
-            <App />
-          </AuthContextProvider>
+      <AuthContextProvider>
+        <SearchContextProvider>
+        <App />   
+        </SearchContextProvider>
+        </AuthContextProvider>
         </BrowserRouter>
       </ChakraProvider>
     </Provider>

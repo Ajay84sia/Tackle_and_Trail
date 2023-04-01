@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { NavLink, useSearchParams } from "react-router-dom";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import "./product.css";
 import { Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Menu,
@@ -32,6 +33,8 @@ import { Heading, Text, Divider } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
+import { SearchContext } from "../Contextapi/SearchContext";
+import { purple } from "@material-ui/core/colors";
 
 function StarFunc({ rating }) {
   const maxRating = 5;
@@ -52,8 +55,10 @@ function StarFunc({ rating }) {
   );
 }
 
+
 export const Product = ({ endpoint, search, categories }) => {
-  const [searchParams] = useSearchParams();
+  const{search}=useContext(SearchContext)
+  const [searchParams,setsearchParams] = useSearchParams();
   const location = useLocation();
   const { products, isLoading, isError } = useSelector(
     (store) => store.productReducer
@@ -76,10 +81,12 @@ export const Product = ({ endpoint, search, categories }) => {
       q: searchParams.get("q"),
     },
   };
-
+console.log(search)
   const handleSort = (event) => {
     const sortType = event.target.dataset.sort;
+
     const orderdata = event.target.dataset.value1;
+
 
     if (sort === sortType) {
       setOrder(orderdata);
@@ -88,6 +95,15 @@ export const Product = ({ endpoint, search, categories }) => {
       setOrder("");
     }
   };
+  console.log(order)
+
+useEffect(()=>{
+  const timeoutId = setTimeout(()=>{
+    console.log("hv")
+   setsearchParams({q:search})
+  },500)
+  return ()=>clearTimeout(timeoutId)
+},[search])
 
   useEffect(() => {
     dispatch(getproducts(endpoint, obj, page));
@@ -139,13 +155,9 @@ export const Product = ({ endpoint, search, categories }) => {
   return (
     <>
       <div className="wrapper">
-        <Sidebar
-          page={page}
-          order={order}
-          search={search}
-          categories={categories}
-        />
-        <div
+        <Sidebar page={page} order={order} search={search} style={{marginTop:"80px"}} className="sidebar"/>
+        <div className="carddata"
+
           style={{
             borderLeft: "1px solid grey",
             height: "auto",
@@ -161,52 +173,62 @@ export const Product = ({ endpoint, search, categories }) => {
               <br />
             </div>
 
-            <div style={{ textAlign: "right" }} className="top-div">
+            <div style={{ textAlign: "right" }} >
               <Menu className="menu">
                 <MenuButton
                   className="menu"
                   as={Button}
+                 
                   rightIcon={<ChevronDownIcon />}
+                  style={{height: "70px", width: "200px",fontSize:"23px" }}
                 >
                   Sort By:Brand
                 </MenuButton>
-                <MenuList className="childmenu" zIndex={15} onKeyDown>
+                <MenuList className="childmenu" zIndex={15} onKeyDown style={{border:"2px solid black"}}>
                   <div
                     className="childhover"
                     data-sort="relevance"
                     onClick={handleSort}
+                    
                   >
-                    Relevance
+                   <b> Relevance</b>
                   </div>
                   <div
                     className="childhover"
                     data-sort="brands"
                     onClick={handleSort}
+                   
                   >
-                    Brands
+                   <b>
+                   Brands
+                   </b>
                   </div>
                   <div
                     className="childhover"
                     data-sort="name"
                     onClick={handleSort}
+                   
                   >
-                    Name
+                   <b>Name</b> 
                   </div>
                   <div
                     className="childhover"
                     data-sort="price"
                     onClick={handleSort}
                     data-value1="asc"
+                   
                   >
-                    Price(Low to High)
+                    <b>Price(Low to High)</b>
                   </div>
                   <div
                     className="childhover"
                     data-sort="price"
-                    data-value1="desc"
                     onClick={handleSort}
+                    data-value1="desc"
+                  
+                    
                   >
-                    Price(High to Low)
+                   <b>Price(High to Low)</b> 
                   </div>
                   <div
                     className="childhover"
@@ -214,7 +236,7 @@ export const Product = ({ endpoint, search, categories }) => {
                     data-value1="desc"
                     onClick={handleSort}
                   >
-                    Top Rated
+                   <b>Top Rated</b> 
                   </div>
                   <div
                     className="childhover"
@@ -222,7 +244,7 @@ export const Product = ({ endpoint, search, categories }) => {
                     data-value1="desc"
                     onClick={handleSort}
                   >
-                    Most Reviewed
+                   <b> Most Reviewed</b>
                   </div>
                 </MenuList>
               </Menu>
@@ -246,39 +268,84 @@ export const Product = ({ endpoint, search, categories }) => {
                   style={{ display: "flex", justifyContent: "space-around" }}
                   key={el.id}
                 >
-                  <Card maxW="sm" className="card">
-                    <NavLink to={`/${endpoint}/${el.id}`}>
-                      <CardBody>
-                        <Image
-                          height="170px"
-                          width="170px"
-                          margin="auto"
-                          textAlign="center"
-                          src={el.image}
-                          borderRadius="lg"
-                        />
-                        <Stack mt="6" spacing="3" style={{ textAlign: "left" }}>
-                          <Text size="md">{el.title}</Text>
-                          <Text>({el.reviews})</Text>
-                          <Text>{el.category}</Text>
-                          <Text color="black" fontSize="2xl">
-                            $ {el.price}
-                          </Text>
-                          <Text>{el.offer}</Text>
-                          <Text>{el.description}</Text>
-                          <StarFunc rating={el.rating} />
-                        </Stack>
-                      </CardBody>
-                    </NavLink>
-                  </Card>
+                <Center py={4}>
+                 <NavLink to={`/${endpoint}/${el.id}`}>
+        <Box
+        height="auto"
+          role={'group'}
+          p={8}
+          minW={"330px"}
+          maxW={'330px'}
+          w={'full'}
+           pos={'relative'}
+          _hover={{boxShadow:'2xl'}}
+          cursor="pointer"
+        
+          zIndex={1}>
+            
+          <Box
+            rounded={'lg'}
+            // mt={-12}
+            pos={'relative'}
+            height="auto"
+         
+            _after={{
+              transition: 'all .3s ease',
+              content: '""',
+              w: 'full',
+              h: 'full',
+              pos: 'absolute',
+              top: 5,
+              left: 0,
+              filter: 'blur(15px)',
+              zIndex: -1,
+            }}
+            _groupHover={{
+              _after: {
+                filter: 'blur(20px)',
+              },
+            }}>
+            <Image
+              rounded={'lg'}
+              height={300}
+              width={282}
+              objectFit={'cover'}
+              src={el.image}
+              
+            />
+          </Box>
+          <Stack pt={10} align={'left'} >
+            <Text color={"black"} textTransform={'uppercase'} fontSize={'lg'} fontWeight="semibold" fontFamily={'body'} align={'left'}>
+            {el.title}
+            </Text>
+            <Stack spacing={0} direction={'column'} align={'left'}>
+            <Text fontSize={'md'} fontWeight="semibold" color={"black"} align={'left'}>
+                    ({el.reviews})
+              </Text>
+                <Text fontSize={'md'} fontWeight="semibold" align={'left'}>
+                  {el.category}
+                </Text>
+              <Text fontSize="22px" fontWeight="semibold" color={'black'} align={'left'}>
+                   ${el.price}
+              </Text>
+              <Text fontSize={'md'} fontWeight="semibold" color={'gray.600'} align={'left'}>
+                   {el.offer}
+              </Text>
+              <StarFunc rating={el.rating}/>
+            </Stack>
+          </Stack>
+        </Box>
+        </NavLink>
+      </Center>
+   
+
                 </div>
               );
             })}
           </div>
         </div>
       </div>
-
-      <Page page={page} setPage={setPage} />
+      <Page page={page} setPage={setPage}  />
     </>
   );
 };

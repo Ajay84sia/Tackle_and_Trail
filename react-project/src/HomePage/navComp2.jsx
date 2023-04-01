@@ -19,14 +19,19 @@ import { Link as NavLink } from "react-router-dom";
 import { useState } from "react";
 import DynamicCart from "./DynamicCart";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Product } from "../Pages/Product";
+import { useContext } from "react";
+import { SearchContext } from "../Contextapi/SearchContext";
+
+
+
 
 function NavComp2() {
   const [searchParams, setsearchParams] = useSearchParams();
   const { user, loginWithRedirect, isAuthenticated, isLoading, logout } =
     useAuth0();
-  const [search, setSearch] = useState("");
-  console.log(search);
+   const{search,setSearch}=useContext(SearchContext)
+     console.log(search)
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,9 +116,6 @@ function NavComp2() {
           </HStack>
         </Box>
       </Flex>
-      {/* <Product search={search}/> */}
-    </>
-  );
 }
 
 export default NavComp2;
