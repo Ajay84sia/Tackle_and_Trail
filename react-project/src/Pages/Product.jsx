@@ -56,7 +56,7 @@ function StarFunc({ rating }) {
 }
 
 
-export const Product = ({ endpoint, search, categories }) => {
+export const Product = ({ endpoint, categories }) => {
   const{search}=useContext(SearchContext)
   const [searchParams,setsearchParams] = useSearchParams();
   const location = useLocation();

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cartDelReq,
+  cartGetReq,
+  cartPatchReq,
+} from "../Redux/CartReducer/action";
+import { NavLink } from "react-router-dom";
+import { element } from "prop-types";
 
 const Container = styled.div``;
 
@@ -40,7 +48,6 @@ const TopButton = styled.button`
 const TopTexts = styled.div``;
 
 const TopText = styled.span`
-  text-decoration: underline;
   cursor: pointer;
   margin: 0px 10px;
 `;
@@ -170,76 +177,113 @@ const TopContainer = styled.div`
 const HeadersContainer = styled.div``;
 
 export const Cart = () => {
+  const dispatch = useDispatch();
+  const { cart } = useSelector((store) => store.cartReducer);
+  const [cartTotal, setCartTotal] = useState(0);
+
+  useEffect(() => {
+    dispatch(cartGetReq());
+  }, []);
+
+  const handleCartTotal = () => {
+    const total = cart.reduce((acc, item) => {
+      return acc + Math.round(item.price * item.quantity);
+    }, 0);
+
+    setCartTotal(total);
+  };
+
+  const handleDelete = (id) => {
+    dispatch(cartDelReq(id)).then((res) => {
+      dispatch(cartGetReq());
+    });
+  };
+
+  const handleCartQuantity = (id, quantity, val) => {
+    const total = quantity + val;
+
+    dispatch(cartPatchReq(id, total)).then((res) => {
+      dispatch(cartGetReq());
+    });
+  };
+
+  useEffect(() => {
+    handleCartTotal();
+  });
   return (
     <>
       <Navbar />
-      <Container style={{ height: "auto", marginTop: "25vh" }}>
+      <Container style={{ height: "auto", marginTop: "28vh" }}>
         <Wrapper>
           <Title>SHOPPING CART</Title>
           <Top>
-            <TopButton>CONTINUE SHOPPING</TopButton>
+            <NavLink to="/shooting">
+              <TopButton>CONTINUE SHOPPING</TopButton>
+            </NavLink>
             <TopTexts>
-              <TopText>Shopping Bag(2)</TopText>
+              <TopText>Cart Contains - {cart.length} items</TopText>
             </TopTexts>
             <TopButton type="filled">Check Store Availability</TopButton>
           </Top>
           <Bottom>
             <Info>
-              <Product>
-                <ProductDetail>
-                  <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/2610680.json?$BPSite_CartTN,w_200,dpr_2.0$" />
-                  <Details>
-                    <ProductName>JESSIE THUNDER SHOES</ProductName>
-                    <ProductId>131241</ProductId>
-                    <ProductSize>Remove</ProductSize>
-                  </Details>
-                </ProductDetail>
-                <ProductArrivalDetails>
-                  <LocalShippingIcon />
-                  <ProductArrivalPlace>Ship To Address</ProductArrivalPlace>
-                </ProductArrivalDetails>
-                <PriceDetail>
-                  <ProductAmountContainer>
-                    <RemoveIcon />
-                    <ProductAmount>2</ProductAmount>
-                    <AddIcon />
-                  </ProductAmountContainer>
-                </PriceDetail>
-                <ProductPrice>$ 30</ProductPrice>
-              </Product>
+              {cart &&
+                cart.map((el, i) => {
+                  return (
+                    <>
+                      <Product>
+                        <ProductDetail>
+                          <Image src={el.image} alt={el.title} />
+                          <Details>
+                            <ProductName>{el.title}</ProductName>
+                            <ProductId>{`T&T-${Math.round(
+                              Math.random() * 1000
+                            )}`}</ProductId>
+                            <button onClick={() => handleDelete(el.id)}>
+                              <ProductSize>Remove</ProductSize>
+                            </button>
+                          </Details>
+                        </ProductDetail>
+                        <ProductArrivalDetails>
+                          <LocalShippingIcon />
+                          <ProductArrivalPlace>
+                            Ship To Address
+                          </ProductArrivalPlace>
+                        </ProductArrivalDetails>
+                        <PriceDetail>
+                          <ProductAmountContainer>
+                            <button
+                              onClick={() =>
+                                handleCartQuantity(el.id, el.quantity, -1)
+                              }
+                            >
+                              <RemoveIcon />
+                            </button>
+                            <ProductAmount>{el.quantity}</ProductAmount>
+                            <button onClick={() => handleCartQuantity(el.id, el.quantity, 1)}>
+                              <AddIcon />
+                            </button>
+                          </ProductAmountContainer>
+                        </PriceDetail>
+                        <ProductPrice>
+                          $ {Math.round(el.price * el.quantity)}
+                        </ProductPrice>
+                      </Product>
+                    </>
+                  );
+                })}
+
               <Hr />
-              <Product>
-                <ProductDetail>
-                  <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/2610680.json?$BPSite_CartTN,w_200,dpr_2.0$" />
-                  <Details>
-                    <ProductName>JESSIE THUNDER SHOES</ProductName>
-                    <ProductId>131241</ProductId>
-                    <ProductSize>Remove</ProductSize>
-                  </Details>
-                </ProductDetail>
-                <ProductArrivalDetails>
-                  <LocalShippingIcon />
-                  <ProductArrivalPlace>Ship To Address</ProductArrivalPlace>
-                </ProductArrivalDetails>
-                <PriceDetail>
-                  <ProductAmountContainer>
-                    <RemoveIcon />
-                    <ProductAmount>2</ProductAmount>
-                    <AddIcon />
-                  </ProductAmountContainer>
-                </PriceDetail>
-                <ProductPrice>$ 30</ProductPrice>
-              </Product>
             </Info>
             <Summary>
               <SummaryTitle> ORDER SUMMARY </SummaryTitle>
               <SummaryItem>
                 <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$ 80</SummaryItemPrice>
+                <SummaryItemPrice>$ {cartTotal}</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText> Shipping</SummaryItemText>
-                <SummaryItemPrice>Free</SummaryItemPrice>
+                <SummaryItemPrice>$ 5</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Shipping Discount</SummaryItemText>
@@ -247,7 +291,7 @@ export const Cart = () => {
               </SummaryItem>
               <SummaryItem type="total">
                 <SummaryItemText>Cart Total</SummaryItemText>
-                <SummaryItemPrice>$ 80</SummaryItemPrice>
+                <SummaryItemPrice>$ {cartTotal + 5}</SummaryItemPrice>
               </SummaryItem>
               <ButtonSummary>CHECKOUT NOW</ButtonSummary>
             </Summary>
