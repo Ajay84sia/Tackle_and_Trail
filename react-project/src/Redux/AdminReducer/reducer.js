@@ -1,4 +1,4 @@
-import { ADMIN_DELETE_REQUEST, ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST } from "./actionTypes";
+import { ADMIN_DELETE_REQUEST, ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST, ADMIN_PATCH_REQUEST } from "./actionTypes";
 
 const initialState = {
     isLoading: false,
@@ -18,6 +18,8 @@ export const reducer = (state = initialState, { type, payload }) => {
             return { ...state, isLoading: false }
         case ADMIN_FAILURE_REQUEST:
             return { ...state, isLoading: false, isError: true }
+            case ADMIN_PATCH_REQUEST : 
+          return {...state, isLoading : false , isError : false }
         default:
             return state;
     }
