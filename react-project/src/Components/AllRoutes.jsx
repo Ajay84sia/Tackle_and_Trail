@@ -3,6 +3,7 @@ import AdminDashboard from "../Admin/AdminDashboard";
 import { Cart } from "../Pages/Cart";
 import HomePage from "../Pages/HomePage";
 import NotFound from "../Pages/NotFound";
+import AdminEditProducts from "../Admin/AdminEditProducts";
 
 function AllRoutes(){
     return (
@@ -12,6 +13,7 @@ function AllRoutes(){
                 <Route path="/admin" element={<AdminDashboard/>} />
                 <Route path="/cart" element={<Cart/>} />
                 <Route path="/*" element={<NotFound/>} />
+                <Route path="edit/:id" element={<AdminEditProducts/>} />
             </Routes>
         </>
     )
