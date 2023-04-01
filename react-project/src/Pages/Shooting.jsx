@@ -7,7 +7,7 @@ const Shooting = () => {
   return (
     <>
     <Navbar />
-    <Product endpoint={"shooting"} />
+    <Product endpoint={"shooting"} categories={["Rifle", "pistol"]}/>
     <Footer />
   </>
   )

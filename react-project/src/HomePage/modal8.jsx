@@ -21,19 +21,19 @@ import {
     ListItem,
   } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
-  function Modal7() {
+  function Modal8() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
       <>
         <Button variant={"unstyled"} onClick={onOpen}>
-            <Text fontWeight={"semibold"} fontSize="19px">Footwear</Text>
+            <Text fontWeight={"semibold"} fontSize="19px">Outdoor Rec</Text>
         </Button>
         <Box   >
         <Modal size={"6xl"}  isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent >
-            <NavLink style={{color: '#545e6f', background: '#f0f0f0' }}>
-                <ModalHeader fontSize={"28px"}>FOOTWEAR</ModalHeader>
+            <NavLink to="/outdoor" style={{color: '#545e6f', background: '#f0f0f0' }}>
+                <ModalHeader fontSize={"28px"}>OUTDOOR REC</ModalHeader>
             </NavLink>
             <ModalCloseButton />
             <ModalBody >
@@ -42,7 +42,7 @@ import { NavLink } from 'react-router-dom'
                     <Grid width={"45vw"}  gridTemplateColumns={"repeat(4,1fr)"} gap="4vw">
                         <GridItem>
                             <VStack  align={"start"}>
-                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"}>MEN'S SHOES & BOOTS</Heading>
+                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">KAYAKS & CANOES</Heading>
                                 <List  spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                     Jackets & Coats
@@ -62,7 +62,7 @@ import { NavLink } from 'react-router-dom'
                         </GridItem>
                         <GridItem>
                             <VStack align={"start"}>
-                                <Heading paddingBottom={"7px"} color={"#21372a"} fontWeight={"semibold"} size={"sm"}>WOMEN's SHOES & BOOTS</Heading>
+                                <Heading paddingBottom={"7px"} color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">TRUCK & AUTO</Heading>
                                 <List  spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                     Jacket & Coats
@@ -82,7 +82,7 @@ import { NavLink } from 'react-router-dom'
                         </GridItem>
                         <GridItem>
                             <VStack align={"start"}>
-                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"}>KID's SHOES & BOOTS</Heading>
+                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">BIKES & ACCESSORIES</Heading>
                                 <List spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                     Pants & Shots
@@ -102,7 +102,7 @@ import { NavLink } from 'react-router-dom'
                         </GridItem>
                         <GridItem>
                             <VStack align={"start"}>
-                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"}>WADERS</Heading>
+                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">OUTDOOR POWER EQUIPMENT</Heading>
                                 <List spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                     Men's Hunting Clothes
@@ -121,7 +121,7 @@ import { NavLink } from 'react-router-dom'
                         </GridItem>
                         <GridItem>
                             <VStack align={"start"}>
-                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"}>SOCKS</Heading>
+                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">WATER SPORTS</Heading>
                                 <List spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                         Anchoring, Rope & Docking
@@ -138,7 +138,7 @@ import { NavLink } from 'react-router-dom'
                         </GridItem>
                         <GridItem>
                             <VStack align={"start"}>
-                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"}>SHOE & BOOT ACCESSORIES</Heading>
+                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">TRAILER ACCESSORIES</Heading>
                                 <List spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                     Cameras
@@ -155,7 +155,7 @@ import { NavLink } from 'react-router-dom'
                         </GridItem>
                         <GridItem>
                             <VStack align={"start"}>
-                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"}>NEW SHOES & BOOTS</Heading>
+                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">ATV & UTV ACCESSORIES</Heading>
                                 <List spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                     Feed/Attractants/Minerals
@@ -172,7 +172,7 @@ import { NavLink } from 'react-router-dom'
                         </GridItem>
                         <GridItem>
                             <VStack align={"start"}>
-                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"}>WATCHES</Heading>
+                                <Heading paddingBottom={"7px"} cursor="pointer" color={"#21372a"} fontWeight={"semibold"} size={"sm"} textTransform="capitalize">METAL DETECTING & PROSPECTING</Heading>
                                 <List spacing={1}>
                                     <ListItem cursor="pointer" color="#666" fontSize="sm">
                                         Boat Seats
@@ -194,7 +194,7 @@ import { NavLink } from 'react-router-dom'
                 </Box>
                 <Box width={"20vw"}>
                     <VStack spacing={5} align={"start"}>
-                        <Image cursor="pointer" height={"40vh"} width="40vw" src='https://media.istockphoto.com/id/1347455404/photo/shot-of-an-unrecognizable-woman-spending-a-day-in-the-city.jpg?b=1&s=170667a&w=0&k=20&c=re2hO1wpjP-mBd6DsCdFTchyGvBFFeNIJG8lxc5B3u8=' />
+                        <Image cursor="pointer" height={"40vh"} width="45vw" src='https://studybreaks.com/wp-content/uploads/2021/12/Outdoor-Activities.jpg' />
                         <Box>
                             <VStack align={"start"} spacing={"2vh"}>
                             <Heading cursor="pointer" _hover={{textDecoration:"underline"}} color= "#8b0f0a" fontWeight={"medium"} size={"lg"}>Bargain Cave</Heading> 
@@ -215,4 +215,4 @@ import { NavLink } from 'react-router-dom'
     )
   }
 
-  export default Modal7
+  export default Modal8

@@ -7,7 +7,7 @@ const Outdoor = () => {
   return (
     <>
     <Navbar />
-    <Product endpoint={"outdoor"} />
+    <Product endpoint={"outdoor"} categories={["sleeping-gear", "pack and bags"]}/>
     <Footer />
   </>
   )

@@ -1,10 +1,12 @@
 import { Avatar, Button, Flex, Heading } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
 import { Link as NavLink } from "react-router-dom";
 import AdminTabs from "./AdminTabs";
 import Logo from "./Image/logo.png";
+import { AuthContext } from "../Contextapi/AuthContext";
 
 const AdminDashboard = () => {
+  const { logout } = useContext(AuthContext);
   return (
     <>
       <Flex
@@ -29,15 +31,18 @@ const AdminDashboard = () => {
           />
         </NavLink>
         <Heading as="h1">Admin Dashboard</Heading>
-        <Button
-          backgroundColor="white"
-          size="lg"
-          color={"black"}
-          fontSize="lg"
-          fontWeight="bold"
-        >
-          Logout
-        </Button>
+        <NavLink to="/">
+          <Button
+            backgroundColor="white"
+            size="lg"
+            color={"black"}
+            fontSize="lg"
+            fontWeight="bold"
+            onClick={logout()}
+          >
+            Logout
+          </Button>
+        </NavLink>
       </Flex>
       <AdminTabs />
     </>

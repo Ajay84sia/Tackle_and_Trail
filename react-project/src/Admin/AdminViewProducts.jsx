@@ -15,6 +15,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { adminGetReq } from "../Redux/AdminReducer/action";
+import { Link } from "react-router-dom";
 
 const AdminViewProducts = () => {
   const dispatch = useDispatch();
@@ -111,6 +112,9 @@ const AdminViewProducts = () => {
                 <Td>{el.title}</Td>
                 <Td>{el.category}</Td>
                 <Td>$ {el.price}</Td>
+                <Link to={`/edit/${el.id}`}>
+                <button>Edit</button>
+                </Link>
               </Tr>
             ))}
           </Tbody>
