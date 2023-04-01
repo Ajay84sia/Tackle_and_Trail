@@ -23,6 +23,7 @@ const Sidebar = ({ page, order,search }) => {
     let params = {
       category,
       title,
+      page,
     };
     search && (params.q=search)
     order && (params.order = order);
@@ -55,9 +56,9 @@ const Sidebar = ({ page, order,search }) => {
   };
 
   return (
-    <div style={{ height: "800px", width: "320px",marginTop:"40px" }}>
+    <div style={{ height: "auto", width: "20%",marginTop:"40px",marginLeft:"0px"}}>
       <b style={{fontSize:"22px"}}>FILTER BY</b>
-      <Accordion allowMultiple style={{marginTop:"20px"}}>
+      <Accordion allowMultiple>
       
         <hr />
         <AccordionItem>
@@ -66,7 +67,7 @@ const Sidebar = ({ page, order,search }) => {
               height="60px"
               width="300px"
               backgroundColor="white"
-              
+              alignSelf="left"
             >
               <Box as="span" flex="1" textAlign="left">
                 <b style={{fontSize:"22px"}}>Category</b>
