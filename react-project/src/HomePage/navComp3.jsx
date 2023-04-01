@@ -7,6 +7,7 @@ import Modal4 from "./modal4"
 import Modal5 from "./modal5"
 import Modal6 from "./modal6"
 import Modal7 from "./modal7"
+import Modal8 from "./modal8"
 
 function NavComp3(){
     return(
@@ -22,10 +23,12 @@ function NavComp3(){
            
                 <Text fontWeight={"semibold"} fontSize="19px"><Modal5 /></Text>
            
+                <Text fontWeight={"semibold"} fontSize="19px"><Modal8 /></Text>
+
+                <Text fontWeight={"semibold"} fontSize="19px"><Modal7 /></Text>
+                
                 <Text fontWeight={"semibold"} fontSize="19px"><Modal6 /></Text>
            
-                <Text fontWeight={"semibold"} fontSize="19px"><Modal7 /></Text>
-            <Text fontWeight={"semibold"} fontSize="19px">Outdoor Rec</Text>
             <Text fontWeight={"semibold"} fontSize="19px">Home & Gift</Text>
             <Text fontWeight={"semibold"} fontSize="19px">Bargain Cave</Text>
         </Flex>
