@@ -58,34 +58,7 @@ const Sidebar = ({ page, order,search }) => {
     <div style={{ height: "800px", width: "320px",marginTop:"40px" }}>
       <b style={{fontSize:"22px"}}>FILTER BY</b>
       <Accordion allowMultiple style={{marginTop:"20px"}}>
-        <AccordionItem>
-          <h1>
-            <AccordionButton
-              height="60px"
-              width="300px"
-              backgroundColor="white"
-            >
-          
-              <Box  flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Availability</b>
-              </Box>
-              <AccordionIcon height="40px" width="45px" />
-            </AccordionButton>
-          </h1>
-          <AccordionPanel textAlign="left">
-            <Checkbox
-              height="20px"
-              width="20px"
-              textAlign="left"
-              alignSelf="left"
-            />
-            <span>In Stock</span>
-            <br />
-            <br />
-            <Checkbox height="20px" width="20px" textAlign="left" />
-            <span>Limited Stock</span>
-          </AccordionPanel>
-        </AccordionItem>
+      
         <hr />
         <AccordionItem>
           <h2>
@@ -156,40 +129,7 @@ const Sidebar = ({ page, order,search }) => {
         </AccordionItem>
 
         <hr />
-        <AccordionItem>
-          <h2>
-            <AccordionButton
-              height="60px"
-              width="300px"
-              backgroundColor="white"
-              
-            >
-               <Box as="span" flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Type</b>
-              </Box>
-              <AccordionIcon height="40px" width="45px" />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel textAlign="left">
-            <Checkbox
-              height="20px"
-              width="20px"
-              textAlign="left"
-            
-              alignSelf="left"
-            />
-            <span>In Stock</span>
-            <br />
-            <br />
-            <Checkbox
-              height="20px"
-              width="20px"
-              textAlign="left"
-             
-            />
-            <span>Limited Stock</span>
-          </AccordionPanel>
-        </AccordionItem>
+       
         <hr />
         <AccordionItem>
           <h2>
@@ -264,6 +204,40 @@ const Sidebar = ({ page, order,search }) => {
               height="60px"
               width="300px"
               backgroundColor="white"
+              
+            >
+               <Box as="span" flex="1" textAlign="left">
+                <b style={{fontSize:"22px"}}>Type</b>
+              </Box>
+              <AccordionIcon height="40px" width="45px" />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel textAlign="left">
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+            
+              alignSelf="left"
+            />
+            <span>In Stock</span>
+            <br />
+            <br />
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+             
+            />
+            <span>Limited Stock</span>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <h2>
+            <AccordionButton
+              height="60px"
+              width="300px"
+              backgroundColor="white"
              
             >
               <Box as="span" flex="1" textAlign="left">
@@ -316,6 +290,34 @@ const Sidebar = ({ page, order,search }) => {
           </AccordionPanel>
         </AccordionItem>
         <hr />
+        <AccordionItem>
+          <h1>
+            <AccordionButton
+              height="60px"
+              width="300px"
+              backgroundColor="white"
+            >
+          
+              <Box  flex="1" textAlign="left">
+                <b style={{fontSize:"22px"}}>Availability</b>
+              </Box>
+              <AccordionIcon height="40px" width="45px" />
+            </AccordionButton>
+          </h1>
+          <AccordionPanel textAlign="left">
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+              alignSelf="left"
+            />
+            <span>In Stock</span>
+            <br />
+            <br />
+            <Checkbox height="20px" width="20px" textAlign="left" />
+            <span>Limited Stock</span>
+          </AccordionPanel>
+        </AccordionItem>
         <AccordionItem>
           <h2>
             <AccordionButton

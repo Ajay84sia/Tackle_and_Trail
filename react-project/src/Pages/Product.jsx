@@ -34,6 +34,7 @@ import { Center } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { SearchContext } from "../Contextapi/SearchContext";
+import { purple } from "@material-ui/core/colors";
 
 function StarFunc({ rating }) {
   const maxRating = 5;
@@ -80,7 +81,7 @@ export const Product = ({endpoint}) => {
 console.log(search)
   const handleSort = (event) => {
     const sortType = event.target.dataset.sort;
-    const orderdata=event.target.dataset.value1
+    const orderdata= event.target.dataset.value1
  
     if (sort === sortType) {
       setOrder(orderdata);
@@ -134,7 +135,7 @@ if(isLoading){
         >
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div className="upper">
-            {/* <span style={{ textTransform: "uppercase" }}>{endpoint}</span> */}
+            <span style={{ textTransform: "uppercase" }}>{endpoint}</span>
               <br />
               <br />
             </div>
@@ -144,56 +145,66 @@ if(isLoading){
                 <MenuButton
                   className="menu"
                   as={Button}
+                 
                   rightIcon={<ChevronDownIcon />}
+                  style={{height: "70px", width: "200px",fontSize:"23px" }}
                 >
                   Sort By:Brand
                 </MenuButton>
-                <MenuList className="childmenu" zIndex={15} onKeyDown>
+                <MenuList className="childmenu" zIndex={15} onKeyDown style={{border:"2px solid black"}}>
                   <div
                     className="childhover"
                     data-sort="relevance"
                     onClick={handleSort}
+                    
                   >
-                    Relevance
+                   <b> Relevance</b>
                   </div>
                   <div
                     className="childhover"
                     data-sort="brands"
                     onClick={handleSort}
+                   
                   >
-                    Brands
+                   <b>
+                   Brands
+                   </b>
                   </div>
                   <div
                     className="childhover"
                     data-sort="name"
                     onClick={handleSort}
+                   
                   >
-                    Name
+                   <b>Name</b> 
                   </div>
                   <div
                     className="childhover"
                     data-sort="price"
                     onClick={handleSort}
                     data-value1="asc"
+                   
                   >
-                    Price(Low to High)
+                    <b>Price(Low to High)</b>
                   </div>
                   <div
                     className="childhover"
                     data-sort="price"
-                    data-value1="desc"
                     onClick={handleSort}
+                    data-value1="desc"
+                  
+                    
                   >
-                    Price(High to Low)
+                   <b>Price(High to Low)</b> 
                   </div>
                   <div
                     className="childhover"
                     data-sort="rating"
                     data-value1="desc"
                     onClick={handleSort}
-                    
+                   
                   >
-                    Top Rated
+                   <b>Top Rated</b> 
                   </div>
                   <div
                     className="childhover"
@@ -201,8 +212,9 @@ if(isLoading){
                     data-value1="desc"
                     onClick={handleSort}
                    
+                   
                   >
-                    Most Reviewed
+                   <b> Most Reviewed</b>
                   </div>
                 </MenuList>
               </Menu>
@@ -227,29 +239,78 @@ if(isLoading){
                 >
                 <Link to={`/${endpoint}/${el.id}`}>
 
-                  <Card maxW="sm" className="card">
-                    <CardBody>
-                      <Image
-                        height="170px"
-                        width="170px"
-                        margin="auto"
-                        textAlign="center"
-                        src={el.image}
-                        borderRadius="lg"
-                      />
-                      <Stack mt="6" spacing="3" style={{textAlign:"left"}}>
-                        <Text size="md">{el.title}</Text>
-                        <Text>({el.reviews})</Text>
-                        <Text>{el.category}</Text>
-                        <Text color="black" fontSize="2xl">
-                          $ {el.price}
-                        </Text>
-                        <Text>{el.offer}</Text>
-                     
-                        <StarFunc rating={el.rating}/>
-                      </Stack>
-                    </CardBody>               
-                  </Card>
+                <Center py={4}>
+        <Box
+        height="auto"
+          role={'group'}
+          p={8}
+        
+          minW={"330px"}
+          maxW={'330px'}
+          w={'full'}
+        
+        //   boxShadow={'2xl'}
+        //   rounded={'lg'}
+          pos={'relative'}
+          _hover={{boxShadow:'2xl'}}
+          cursor="pointer"
+        
+          zIndex={1}>
+            
+          <Box
+            rounded={'lg'}
+            // mt={-12}
+            pos={'relative'}
+            height="auto"
+         
+            _after={{
+              transition: 'all .3s ease',
+              content: '""',
+              w: 'full',
+              h: 'full',
+              pos: 'absolute',
+              top: 5,
+              left: 0,
+              filter: 'blur(15px)',
+              zIndex: -1,
+            }}
+            _groupHover={{
+              _after: {
+                filter: 'blur(20px)',
+              },
+            }}>
+            <Image
+              rounded={'lg'}
+              height={300}
+              width={282}
+              objectFit={'cover'}
+              src={el.image}
+              
+            />
+          </Box>
+          <Stack pt={10} align={'left'} >
+            <Text color={"black"} textTransform={'uppercase'} fontSize={'lg'} fontWeight="semibold" fontFamily={'body'} align={'left'}>
+            {el.title}
+            </Text>
+            <Stack spacing={0} direction={'column'} align={'left'}>
+            <Text fontSize={'md'} fontWeight="semibold" color={"black"} align={'left'}>
+                    ({el.reviews})
+              </Text>
+                <Text fontSize={'md'} fontWeight="semibold" align={'left'}>
+                  {el.category}
+                </Text>
+              <Text fontSize="22px" fontWeight="semibold" color={'black'} align={'left'}>
+                   ${el.price}
+              </Text>
+              <Text fontSize={'md'} fontWeight="semibold" color={'gray.600'} align={'left'}>
+                   {el.offer}
+              </Text>
+              <StarFunc rating={el.rating}/>
+            </Stack>
+          </Stack>
+        </Box>
+      </Center>
+   
                   </Link>
                 </div>
               );
