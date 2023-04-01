@@ -9,89 +9,84 @@ import { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
-
-
-export const SingleProductPage = ({stars,review}) => {
-   const [quanity,setQuanity] = useState(1);
+export const SingleProductPage = ({ stars, review }) => {
+  const [quanity, setQuanity] = useState(1);
 
   const params = useParams();
 
   const { products } = useSelector((store) => store.productReducer);
-  
+
   console.log(products);
 
   const handleAddToCart = () => {};
 
-   const handleRemove = () => {
-       setQuanity(quanity-1);
-    }
-    const handleAdd = () => {
-        setQuanity(quanity+1);
-    }
+  const handleRemove = () => {
+    setQuanity(quanity - 1);
+  };
+  const handleAdd = () => {
+    setQuanity(quanity + 1);
+  };
 
-    const handleCart = () => {
-        console.log("Product is added to cart")
-    }
+  const handleCart = () => {
+    console.log("Product is added to cart");
+  };
 
   return (
     <>
       <Navbar />
-      <Container style={{height: "auto", marginTop: "25vh"}}>
-    <Container>
-      <Wrapper>
-        <ImgContainer>
-          <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/4410647.json?$BPSSite_Rec140$" />
-        </ImgContainer>
-        <Hr />
-        <InfoContainer>
-          <Title>Killer Instinct Lethal 405 Crossbow Package</Title>
-          <RatingOfProduct>
-            <StarRating stars={stars} review={review}>
-                <Star/>
-            </StarRating>  
-          </RatingOfProduct>
-          <Desc>
-          SAVE TODAY! Pay $229.99 with $20 in CLUB Points upon approval to use on today's order.
-          </Desc>
-          <Price>$ 34.99</Price>
-          <ProductTypeDetails>
-            Category: Fishing Rod
-          </ProductTypeDetails>
-          <ProductSize>
-            Size:10lbs
-          </ProductSize>
-          <ProductQuantity>Quantity:{quanity}</ProductQuantity>
-          <AddConntainer>
-            <AmountContainer>
-              <RemoveIcon onClick={handleRemove} disable={quanity===1}/>
-              <Amonunt>1</Amonunt>
-              <AddIcon onClick={handleAdd}  />
-            </AmountContainer>
-          </AddConntainer>
-          <ButtonDiv>
-            <Button onClick={handleCart}>Add to cart</Button>
-          </ButtonDiv>
-        </InfoContainer>
-      </Wrapper>
-      <DetailsHeader>Product Details</DetailsHeader>
-      <ProductDesc>
-              Offering incredible velocities of up to 405 fps, the Killer
-              Instinct® Lethal 405 Crossbow Package is rugged, lightweight, and
-              quiet. The lightweight composite frame features an over molded
-              grip and adjustable X-Lok forearm piece for maximum comfort and
-              control, while the included 4x32 scope extends your overall range.
-              Integrated rubber suppressors boast quiet, stealthy performance
-              and lightweight carbon bolts offer improved accuracy. Plus, a
-              lightweight, consistent trigger ensures reduced anticipation and
-              steady control. This crossbow package includes a rope cocker,
-              3-bolt quiver, string suppressors, 3 Killer Instinct HYPR Lite
-              Carbon Crossbolts with field tips, and rail lubricant, ensuring
-              you're ready for target practice, right out of the box!
-            </ProductDesc>
-    </Container>
-         <Footer />
+      <Container style={{ height: "auto", marginTop: "25vh" }}>
+        <Container>
+          <Wrapper>
+            <ImgContainer>
+              <Image src="https://assets.basspro.com/image/list/fn_select:jq:first(.%5B%5D%7Cselect(.public_id%20%7C%20endswith(%22main%22)))/4410647.json?$BPSSite_Rec140$" />
+            </ImgContainer>
+            <Hr />
+            <InfoContainer>
+              <Title>Killer Instinct Lethal 405 Crossbow Package</Title>
+              <RatingOfProduct>
+                <StarRating stars={stars} review={review}>
+                  <Star />
+                </StarRating>
+              </RatingOfProduct>
+              <Desc>
+                SAVE TODAY! Pay $229.99 with $20 in CLUB Points upon approval to
+                use on today's order.
+              </Desc>
+              <Price>$ 34.99</Price>
+              <ProductTypeDetails>Category: Fishing Rod</ProductTypeDetails>
+              <ProductSize>Size:10lbs</ProductSize>
+              <ProductQuantity>Quantity:{quanity}</ProductQuantity>
+              <AddConntainer>
+                <AmountContainer>
+                  <RemoveIcon onClick={handleRemove} disable={quanity === 1} />
+                  <Amonunt>1</Amonunt>
+                  <AddIcon onClick={handleAdd} />
+                </AmountContainer>
+              </AddConntainer>
+              <ButtonDiv>
+                <Button onClick={handleCart}>Add to cart</Button>
+              </ButtonDiv>
+            </InfoContainer>
+          </Wrapper>
+          <DetailsHeader>Product Details</DetailsHeader>
+          <ProductDesc>
+            Offering incredible velocities of up to 405 fps, the Killer
+            Instinct® Lethal 405 Crossbow Package is rugged, lightweight, and
+            quiet. The lightweight composite frame features an over molded grip
+            and adjustable X-Lok forearm piece for maximum comfort and control,
+            while the included 4x32 scope extends your overall range. Integrated
+            rubber suppressors boast quiet, stealthy performance and lightweight
+            carbon bolts offer improved accuracy. Plus, a lightweight,
+            consistent trigger ensures reduced anticipation and steady control.
+            This crossbow package includes a rope cocker, 3-bolt quiver, string
+            suppressors, 3 Killer Instinct HYPR Lite Carbon Crossbolts with
+            field tips, and rail lubricant, ensuring you're ready for target
+            practice, right out of the box!
+          </ProductDesc>
+        </Container>
+      </Container>
+      <Footer />
     </>
-
   );
 };
 
@@ -155,18 +150,18 @@ const Amonunt = styled.span`
   margin: 0px 5px;
 `;
 const ButtonDiv = styled.div`
-    display: flex;
-    height: 100px;
-    justify-content: left;
-    align-items: center;
-`
+  display: flex;
+  height: 100px;
+  justify-content: left;
+  align-items: center;
+`;
 const ButtonDiv1 = styled.div`
-    display: flex;
-    height: 100px;
-    justify-content: left;
-    align-items: center;
-    margin-top: -20px;
-`
+  display: flex;
+  height: 100px;
+  justify-content: left;
+  align-items: center;
+  margin-top: -20px;
+`;
 const Button = styled.button`
   width: 50%;
   padding: 15px;
@@ -183,7 +178,7 @@ const Buttonn = styled.button`
   width: 50%;
   padding: 15px;
   border: 2px solid teal;
-  background-color:white;
+  background-color: white;
   align-items: center;
   justify-content: center;
   color: black;
@@ -211,18 +206,15 @@ const ProductDetails = styled.div`
   margin-right: 20px;
   text-align: left;
 `;
-const  ProductDesc = styled.p`
+const ProductDesc = styled.p`
   width: 80%;
-  padding-left:20px;
- text-align: justify;
- font-weight: lighter;
-`
-const ProductTypeDetails = styled.p`
+  padding-left: 20px;
+  text-align: justify;
+  font-weight: lighter;
 `;
-const ProductSize = styled.p`
-`;
+const ProductTypeDetails = styled.p``;
+const ProductSize = styled.p``;
 const DetailsHeader = styled.h1`
-text-align: left;
-margin-left: 20px;
-`
-
+  text-align: left;
+  margin-left: 20px;
+`;
