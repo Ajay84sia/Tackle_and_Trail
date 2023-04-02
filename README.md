@@ -1,12 +1,13 @@
 Construct Week Project of RCT211 - Clone of Basspro.com
+<br/>
 :computer:Clone Project Name - ![App Screenshot](https://assetshare.basspro.com/content/dam/bps-general-assets/web/site-elements/images/Redesign/Header/bass-pro-logo-2x.png)
 ---
-Largest online fashion and lifestyle e-commerce platform in India. It is owned by Reliance Retail, which is a subsidiary of Reliance Industries Ltd, one of the largest organization in India. They offers a wide range of fashion products including clothing, footwear, and accessories for men, women, and kids. They also offer a curated selection of international and Indian designer collections. This is an Individual Project from Masai School in the Construct Week within the span of 5 days.
+Bass Pro Shops is the largest trusted source for quality fishing, hunting, boating and outdoor sporting goods. It is owned by Johnny Morris, which is a subsidiary of BPS Direct, L.L.C, one of the largest organizations in the U.S.A. They offer a wide range of fishing, hunting and boating gear. They also offer a curated selection of international collections. This was a Collaborative Project from Masai School in Construct Week with a span of 5 days.
 ---
 :computer:Unique Project Name & logo :- Tackle and Trail
 ![image](https://user-images.githubusercontent.com/61020616/229343129-241c638c-20f1-4f67-97ec-c564945253d1.png)
 ---
-:star:Deployed Link:-https://urbanstudio.netlify.app/
+:star:Deployed Link:-https://tackle-and-trail.netlify.app/
 ---
  ## Technologies Used
 Tackle and Trail Shop has been built using the following technologies:
@@ -16,22 +17,24 @@ building user interfaces or UI components.
 - React Router: A popular routing library for React.
 - Chakra-UI: A popular UI component library for React.
 - Render.com: A popular backend-as-a-service platform that provides authentication, database, and hosting services.
-- Vercel: A popular platform for client side (front-end) deployment.
+- Netlify: A popular platform for client side (front-end) deployment.
+- Auth0: Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications. 
+- Stripe Payment Gateway : Stripe is a card processing provider that processes your customers' payments.
 ## Credits
 This project was created by Team Tackle and Trail. The Team Members are
 <br>
-1.Ajay - _(Admin Panel, Authentication Logic,signup/login page)_
+1.Ajay - _(Admin Panel, Authentication Logic, Signin/Signup page, Payment)_
 <br>
 2.Arnab Adhikary -  _(landing page, navbar, footer)_
 <br>
-3.Harshita katara - _(all products page, product details page)_
+3.Harshita katara - _(all products page, sidebar, searching, sorting & filtering)_
 <br>
-4.Pranav Barsagade -  _(cart page, checkout page)_
+4.Pranav Barsagade -  _(single product, cart page, checkout page)_
 5.Rishabh Dev -  _(Admin Panel, documentation)_
 ### Installation
 To install and run this project on your local machine, follow these steps:
-Clone the repository using git clone https://github.com/GovindPullagura/aware-carriage-7836.git
-Navigate to the project directory using cd indi_shop
+Clone the repository using git clone https://github.com/Ajay84sia/auspicious-sea-8816
+Navigate to the project directory using cd react-project
 Install the dependencies using npm install
 Start the development server using npm start
 This will start the development server at http://localhost:3000.
@@ -66,8 +69,11 @@ This will start the development server at http://localhost:3000.
 ![image](https://user-images.githubusercontent.com/61020616/229344039-122b44b9-b335-478e-8b2a-80ea429d5610.png)
 # Payment Page
 ![image](https://user-images.githubusercontent.com/61020616/229344332-7ff49600-5291-45e8-a47d-5fd01dd5c189.png)
+![image](https://user-images.githubusercontent.com/98752820/229356061-ef2f90f5-83c0-4aa2-b569-3f4d45ab9c65.png)
+
 # Order Placed Page
-![image](https://user-images.githubusercontent.com/98752820/221408403-c3bd5582-33ba-42d0-acdd-a9f8b38f663e.png)
+![image](https://user-images.githubusercontent.com/98752820/229356132-9af5bff3-d9a5-4b04-acad-d520fa33615a.png)
+
 # Admin Login Page
 ![image](https://user-images.githubusercontent.com/61020616/229344353-565c3918-87ec-4b8b-8305-5e0e8b7d0d4e.png)
 # Admin Dashoard
@@ -82,4 +88,7 @@ This will start the development server at http://localhost:3000.
 # Remove Products Section
 ![image](https://user-images.githubusercontent.com/61020616/229344617-6c120a88-82a0-4799-8870-5ccf2d58352d.png)
 ----
+# All Orders Section
+![image](https://user-images.githubusercontent.com/98752820/229356204-a8511fad-e5c6-4579-bbd5-508fcedab846.png)
+
 <h1 align="center">:sparkles:Thank You:sparkles:</h1>
