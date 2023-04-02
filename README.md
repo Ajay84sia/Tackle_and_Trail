@@ -72,7 +72,7 @@ This will start the development server at http://localhost:3000.
 ![image](https://user-images.githubusercontent.com/98752820/229356061-ef2f90f5-83c0-4aa2-b569-3f4d45ab9c65.png)
 
 # Order Placed Page
-![image](https://user-images.githubusercontent.com/98752820/229356132-9af5bff3-d9a5-4b04-acad-d520fa33615a.png)
+![image (1)](https://user-images.githubusercontent.com/98752820/229356343-aa4b7f55-6958-4aa6-932f-d1aa97b9e479.png)
 
 # Admin Login Page
 ![image](https://user-images.githubusercontent.com/61020616/229344353-565c3918-87ec-4b8b-8305-5e0e8b7d0d4e.png)
