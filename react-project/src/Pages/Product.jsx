@@ -1,248 +1,374 @@
-import {
-  Box,
-  Button,
-  Center,
-  Divider,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  Image,
-  Input,
-  Radio,
-  RadioGroup,
-  Stack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import StripeCheckout from "react-stripe-checkout";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { Spinner } from "@chakra-ui/react";
+import { getproducts } from "../Redux/productReducer/action";
+import { Page } from "./Pagination";
+import { useState } from "react";
+import Sidebar from "./Sidebar";
+import "./product.css";
+import { Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
+import { StarIcon } from "@chakra-ui/icons";
+import { Flex } from "@chakra-ui/react";
+import { AccordionIcon } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
+import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
+import { Heading, Text, Divider } from "@chakra-ui/react";
 
-const Payment = () => {
-  const { cart } = useSelector((store) => store.cartReducer);
-  const [cartTotal, setCartTotal] = useState(0);
-  const [complete, setComplete] = useState(false);
-  const handleCartTotal = () => {
-    const total = cart.reduce((acc, item) => {
-      return acc + Math.round(item.price * item.quantity);
-    }, 0);
+import { Center } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { SearchContext } from "../Contextapi/SearchContext";
+import { purple } from "@material-ui/core/colors";
 
-    setCartTotal((total + 5) * 100);
-  };
-  useEffect(() => {
-    handleCartTotal();
-  }, []);
+function StarFunc({ rating }) {
+  const maxRating = 5;
 
-  const onToken = (token) => {
-    setComplete(true);
-    console.log(token);
-  };
-  if (complete) {
-    return <Navigate to="/final" />;
-  }
   return (
-    <div>
-      <Navbar />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+    <Flex align="center">
+      {[...Array(maxRating)].map((_, index) => {
+        const isFilled = index < rating;
 
-      <Box
-        py={8}
-        px={3}
-        boxShadow="dark-lg"
-        height={"420px"}
-        margin="auto"
-        marginBottom={"50px"}
-        width="38%"
-        borderRadius="20px"
-      >
-        <Heading textAlign={"center"}>Select Payment Method</Heading>
-        <br />
-        <Flex border="1px solid grey">
-          <Box padding={"10px"}>
-            <Tabs
-              variant="solid-rounded"
-              colorScheme="teal"
-              orientation="vertical"
-            >
-              <TabList width="250px">
-                <Tab marginTop="10px">Credit / Debit</Tab>
-                <Tab marginTop="10px">NetBanking</Tab>
-                <Tab marginTop="10px">Wallet</Tab>
-                <Tab marginTop="10px">UPI</Tab>
-                <Tab marginTop="10px">C.O.D</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel>
-                  <Center>
-                    <Text fontWeight="bold" fontSize="20px" marginBottom="10px">
-                      Select Card Type
-                    </Text>
-                  </Center>
-                  <RadioGroup>
-                    <Stack direction="row">
-                      <Radio value="credit">Credit Card</Radio>
-                      <Radio value="debit">Debit Card</Radio>
-                    </Stack>
-                  </RadioGroup>
-                  <br />
-                  <br />
-                  <StripeCheckout
-                    token={onToken}
-                    name="Tackle & Trail"
-                    currency="USD"
-                    amount={cartTotal}
-                    stripeKey="pk_test_51MqsBeSA2J3QKzPs2NMhYINDPKsCBIyn87ejtUMBb0AUgVIaZIdtD2xjJ4NtpSG9YCsbGw53lRytTyvAdEPaEk5w00q7rFJ6jG"
-                  />
-                </TabPanel>
-                <TabPanel>
-                  <Grid templateColumns="repeat(2, 1fr)" gap={5}>
-                    <GridItem>
-                      <Button colorScheme="teal" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://www.gurpreetsaluja.com/wp-content/uploads/2020/09/HDFC-LOGO.png"
-                          alt="hdfclogo"
-                          width="50px"
-                          height="40px"
-                        />
-                      </Button>
-                    </GridItem>
-                    <GridItem>
-                      <Button colorScheme="teal" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://www.freepnglogos.com/uploads/sbi-logo-png/image-sbi-logo-logopedia-fandom-powered-wikia-0.png"
-                          alt="sbi"
-                          width="50px"
-                        />
-                      </Button>
-                    </GridItem>
-                    <GridItem>
-                      <Button colorScheme="teal" bg="#861F41" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://www.axisbank.com/assets/images/logo-white.png"
-                          alt="axis"
-                          width="50px"
-                        />
-                      </Button>
-                    </GridItem>
-                    <GridItem>
-                      <Button colorScheme="teal" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://www.icicibank.com/content/dam/icicibank/india/assets/images/header/logo.png"
-                          alt="icici"
-                          width="50px"
-                        />
-                      </Button>
-                    </GridItem>
-                  </Grid>
-                </TabPanel>
-                <TabPanel>
-                  <Grid templateColumns="repeat(2, 1fr)" gap={5}>
-                    <GridItem>
-                      <Button colorScheme="teal" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://1000logos.net/wp-content/uploads/2021/03/Paytm_Logo.png"
-                          alt="paytmlogo"
-                          width="50px"
-                        />
-                      </Button>
-                    </GridItem>
-                    <GridItem>
-                      <Button colorScheme="teal" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://cdn3.freelogovectors.net/wp-content/uploads/2019/02/freecharge_logo.png"
-                          alt="freecharge"
-                          width="50px"
-                        />
-                      </Button>
-                    </GridItem>
-                    <GridItem>
-                      <Button colorScheme="teal" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAA4sYgTMysShyVl_qwaCJ2aCT-PvNiMZzOA&usqp=CAU"
-                          alt="mobikwik"
-                          width="50px"
-                        />
-                      </Button>
-                    </GridItem>
-                    <GridItem>
-                      <Button colorScheme="teal" variant="outline">
-                        {" "}
-                        <Image
-                          src="https://images.fonearena.com/blog/wp-content/uploads/2018/09/Amazon-Pay.jpg"
-                          alt="amazonpay"
-                          width="50px"
-                        />
-                      </Button>
-                    </GridItem>
-                  </Grid>
-                </TabPanel>
-                <TabPanel>
-                  <Center>
-                    <Text fontWeight="bold" fontSize="20px" marginBottom="20px">
-                      Enter Your UPI ID Below
-                    </Text>
-                  </Center>
-                  <Input
-                    marginBottom="20px"
-                    border="1px solid black"
-                    placeholder="1234567890@upi"
-                  />
-                  <Center>
-                    <NavLink to="/final">
-                      <Button bg="#d1b080" color="white" size="md">
-                        PLACE ORDER
-                      </Button>
-                    </NavLink>
-                  </Center>
-                </TabPanel>
-                <TabPanel>
-                  <Center>
-                    <Text fontWeight="bold" fontSize="20px" marginBottom="20px">
-                      Cash on Delivery
-                    </Text>
-                  </Center>
-                  <Center>
-                    <NavLink to="/final">
-                      <Button bg="#d1b080" color="white" size="md">
-                        PLACE ORDER
-                      </Button>
-                    </NavLink>
-                  </Center>
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
+        return (
+          <Box key={index} color={isFilled ? "grey" : "gray.300"} mr={1}>
+            <StarIcon style={{ height: "10px", width: "10px" }} />
           </Box>
-        </Flex>
-      </Box>
-
-      <Footer />
-    </div>
+        );
+      })}
+      <Text fontSize="sm">{rating}</Text>
+    </Flex>
   );
+}
+
+const getCurrentPage = (value) => {
+  value = Number(value);
+  if (typeof value === "number" && value <= 0) {
+    value = 1;
+  }
+  if (!value) {
+    value = 1;
+  }
+  return value;
 };
 
-export default Payment;
+export const Product = ({ endpoint, categories }) => {
+  const { search } = useContext(SearchContext);
+  const [searchParams, setsearchParams] = useSearchParams();
+  const location = useLocation();
+  const { products, isLoading } = useSelector((store) => store.productReducer);
+  const initialPage = getCurrentPage(searchParams.get("page"));
+  const [page, setPage] = useState(initialPage || 1);
+  const initialOrder = searchParams.get("order");
+  const [order, setOrder] = useState(initialOrder || "");
+  const initialSort = searchParams.get("sort");
+  const [sort, setSort] = useState(initialSort || "");
+  const dispatch = useDispatch();
+  const obj = {
+    params: {
+      category: searchParams.getAll("category"),
+      title: searchParams.getAll("title"),
+      _sort:
+        sort === "price" || sort === "reviews" || sort === "rating"
+          ? sort
+          : undefined,
+      _order: searchParams.get("order"),
+      q: searchParams.get("q"),
+      page: searchParams.get("page"),
+    },
+  };
+  console.log(search);
+  const handleSort = (event) => {
+    const sortType = event.target.dataset.sort;
+    const orderdata = event.target.dataset.value1;
+
+    if (sort === sortType) {
+      setOrder(orderdata);
+    } else {
+      setSort(sortType);
+      setOrder("");
+    }
+  };
+  console.log(order);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      console.log("hv");
+      setsearchParams({ q: search });
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [search, page]);
+
+  useEffect(() => {
+    dispatch(getproducts(endpoint, obj, page));
+  }, [location.search]);
+
+  useEffect(() => {
+    setsearchParams({ page: page });
+  }, [page, search]);
+
+  // console.log(sort)
+  //   console.log(order)
+
+  // console.log(isLoading)
+
+  if (isLoading) {
+    console.log(isLoading);
+    return (
+      <Spinner
+        style={{ textAlign: "center", marginTop: "300px" }}
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    );
+  }
+  return (
+    <>
+      <div className="wrapper" style={{ paddingTop: "28vh" }}>
+        <Sidebar
+          page={page}
+          order={order}
+          categories={categories}
+          search={search}
+          style={{ marginTop: "80px" }}
+          className="sidebar"
+        />
+        <div
+          style={{
+            borderLeft: "1px solid grey",
+            height: "auto",
+            float: "right",
+            marginLeft: "5px",
+            marginTop: "50px",
+            width: "85%",
+            // border:"2px solid orange"
+            paddingLeft: "10px",
+            paddingRight: "10px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingLeft: "10px",
+              paddingRight: "10px",
+            }}
+          >
+            <div className="upper">
+              <span style={{ textTransform: "uppercase" }}>{endpoint}</span>
+              <br />
+              <br />
+            </div>
+
+            <div style={{ textAlign: "right" }}>
+              <Menu className="menu">
+                <MenuButton
+                  className="menu"
+                  as={Button}
+                  rightIcon={<ChevronDownIcon />}
+                  style={{ height: "70px", width: "200px", fontSize: "23px" }}
+                >
+                  Sort By:Brand
+                </MenuButton>
+                <MenuList
+                  className="childmenu"
+                  zIndex={15}
+                  onKeyDown
+                  style={{ border: "2px solid black" }}
+                >
+                  <div
+                    className="childhover"
+                    data-sort="relevance"
+                    onClick={handleSort}
+                  >
+                    <b> Relevance</b>
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="brands"
+                    onClick={handleSort}
+                  >
+                    <b>Brands</b>
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="name"
+                    onClick={handleSort}
+                  >
+                    <b>Name</b>
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="price"
+                    onClick={handleSort}
+                    data-value1="asc"
+                  >
+                    <b>Price(Low to High)</b>
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="price"
+                    onClick={handleSort}
+                    data-value1="desc"
+                  >
+                    <b>Price(High to Low)</b>
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="rating"
+                    data-value1="desc"
+                    onClick={handleSort}
+                  >
+                    <b>Top Rated</b>
+                  </div>
+                  <div
+                    className="childhover"
+                    data-sort="reviews"
+                    data-value1="desc"
+                    onClick={handleSort}
+                  >
+                    <b> Most Reviewed</b>
+                  </div>
+                </MenuList>
+              </Menu>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gap: "10px",
+              gridTemplateColumns: "repeat(3,1fr)",
+              height: "auto",
+              width: "100%",
+              marginTop: "20px",
+              marginLeft: "10px",
+              // border:"2px solid brown",
+            }}
+            className="bottom-div"
+          >
+            {products.map((el) => {
+              return (
+                <div>
+                  <Link to={`/${endpoint}/${el.id}`}>
+                    <Box
+                      w={"25%"}
+                      style={{ width: "100%" }}
+                      pos={"relative"}
+                      p={8}
+                      _hover={{ boxShadow: "2xl" }}
+                      cursor="pointer"
+                      alignItems="stretch"
+                    >
+                      <Box
+                        rounded={"lg"}
+                        width="100%"
+                        pos={"relative"}
+                        height="100%"
+                        _after={{
+                          transition: "all .3s ease",
+                          content: '""',
+                          w: "full",
+                          h: "full",
+                          pos: "absolute",
+                          top: 5,
+                          left: 0,
+                          filter: "blur(15px)",
+                        }}
+                        _groupHover={{
+                          _after: {
+                            filter: "blur(20px)",
+                          },
+                        }}
+                      >
+                        <Image
+                          rounded={"lg"}
+                          height={200}
+                          width={"50%"}
+                          textAlign={"center"}
+                          display={"block"}
+                          marginLeft={"auto"}
+                          marginRight={"auto"}
+                          src={el.image}
+                        />
+                      </Box>
+                      <Stack align={"left"}>
+                        <Text
+                          color={"black"}
+                          textTransform={"uppercase"}
+                          fontSize={"lg"}
+                          fontWeight="semibold"
+                          fontFamily={"body"}
+                          align={"left"}
+                        >
+                          {el.title}
+                        </Text>
+                        <Stack
+                          spacing={0}
+                          direction={"column"}
+                          align={"left"}
+                          style={{ marginLeft: "5px" }}
+                        >
+                          <Text
+                            fontSize={"md"}
+                            fontWeight="semibold"
+                            color={"black"}
+                            align={"left"}
+                          >
+                            ({el.reviews})
+                          </Text>
+                          <Text
+                            fontSize={"md"}
+                            fontWeight="semibold"
+                            align={"left"}
+                          >
+                            {el.category}
+                          </Text>
+                          <Text
+                            fontSize="22px"
+                            fontWeight="semibold"
+                            color={"black"}
+                            align={"left"}
+                          >
+                            ${el.price}
+                          </Text>
+                          <Text
+                            fontSize={"md"}
+                            fontWeight="semibold"
+                            color={"gray.600"}
+                            align={"left"}
+                          >
+                            {el.offer}
+                          </Text>
+                          <StarFunc rating={el.rating} />
+                        </Stack>
+                      </Stack>
+                    </Box>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <Page page={page} setPage={setPage} />
+    </>
+  );
+};
