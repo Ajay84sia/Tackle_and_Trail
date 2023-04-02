@@ -27,7 +27,7 @@ function NavComp2() {
   const { user, loginWithRedirect, isAuthenticated, isLoading, logout } =
     useAuth0();
   const { search, setSearch } = useContext(SearchContext);
-  console.log(search);
+  // console.log(search);
 
   const handleSubmit = (e) => {
     e.preventDefault();

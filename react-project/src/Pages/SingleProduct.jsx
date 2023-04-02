@@ -8,8 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { cartPostReq } from "../Redux/CartReducer/action";
+import { useToast } from "@chakra-ui/react";
 
 export const SingleProduct = () => {
+  const toast = useToast();
   const { id } = useParams();
   const { products } = useSelector((store) => store.productReducer);
   const [quantity, setQuantity] = useState(1);
@@ -26,7 +28,14 @@ export const SingleProduct = () => {
   const handleAddToCart = () => {
     const data = { ...singleData, ["quantity"]: quantity };
     delete data["id"]
-    dispatch(cartPostReq(data))
+    dispatch(cartPostReq(data)).then(()=>{
+      toast({
+        title: `Product Added in the Shopping Cart`,
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+      });
+    })
   };
 
   const handleQuantity = (val) => {

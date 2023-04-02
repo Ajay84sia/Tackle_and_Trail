@@ -14,7 +14,7 @@ justify-content: space-between;
 }
 
 .wrapper::before {
-  border-left: 3px solid black;
+  /* border-left: 3px solid black; */
   height: 100%;
   margin-right: 10px;
 }

@@ -12,6 +12,8 @@ import { Product } from "../Pages/Product";
 import Shooting from "../Pages/Shooting";
 import { SingleProduct } from "../Pages/SingleProduct";
 import AdminLogin from "../Admin/AdminLogin";
+import Payment from "../Pages/Payment"
+import OrderPlaced from "../Pages/OrderPlaced";
 
 function AllRoutes() {
   return (
@@ -29,6 +31,8 @@ function AllRoutes() {
         <Route path="/outdoor" element={<Outdoor />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/final" element={<OrderPlaced />} />
         <Route path="/:endpoint/:id" element={<SingleProduct />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
