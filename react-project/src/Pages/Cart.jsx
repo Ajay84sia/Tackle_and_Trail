@@ -13,7 +13,8 @@ import {
 } from "../Redux/CartReducer/action";
 import { NavLink } from "react-router-dom";
 import { element } from "prop-types";
-import { Center, Image as IMG } from "@chakra-ui/react";
+import { Center, Image as IMG, useToast } from "@chakra-ui/react";
+import axios from "axios";
 
 const Container = styled.div``;
 
@@ -164,6 +165,7 @@ const ButtonSummary = styled.button`
   background-color: black;
   color: white;
   font-weight: 100;
+  cursor: pointer;
 `;
 
 const TopContainer = styled.div`
@@ -178,6 +180,7 @@ const TopContainer = styled.div`
 const HeadersContainer = styled.div``;
 
 export const Cart = () => {
+  const toast = useToast();
   const dispatch = useDispatch();
   const { cart } = useSelector((store) => store.cartReducer);
   const [cartTotal, setCartTotal] = useState(0);
@@ -196,7 +199,14 @@ export const Cart = () => {
 
   const handleDelete = (id) => {
     dispatch(cartDelReq(id)).then((res) => {
-      dispatch(cartGetReq());
+      dispatch(cartGetReq()).then(() => {
+        toast({
+          title: `Product removed from the shopping bag`,
+          status: "error",
+          duration: 1000,
+          isClosable: true,
+        });
+      });
     });
   };
 
@@ -211,6 +221,20 @@ export const Cart = () => {
   useEffect(() => {
     handleCartTotal();
   });
+
+  const handleOrder = () => {
+    axios
+      .post(`https://tackle-and-trail.onrender.com/orders`, {
+        cart,
+        ["cartTotal"]: cartTotal + 5,
+        ["totalItems"]: cart.length,
+        ["status"]: "Pending",
+      })
+      .then((res) => {
+        console.log("done");
+      })
+      .catch((err) => console.log("err"));
+  };
   return (
     <>
       <Navbar />
@@ -249,9 +273,7 @@ export const Cart = () => {
                             <Image src={el.image} alt={el.title} />
                             <Details>
                               <ProductName>{el.title}</ProductName>
-                              <ProductId>{`T&T-${Math.round(
-                                Math.random() * 1000
-                              )}`}</ProductId>
+                              <ProductId>{`T&T-16561${el.id}`}</ProductId>
                               <button onClick={() => handleDelete(el.id)}>
                                 <ProductSize>Remove</ProductSize>
                               </button>
@@ -311,7 +333,9 @@ export const Cart = () => {
                   <SummaryItemPrice>$ {cartTotal + 5}</SummaryItemPrice>
                 </SummaryItem>
                 <NavLink to="/payment">
-                  <ButtonSummary>CHECKOUT NOW</ButtonSummary>
+                  <ButtonSummary onClick={handleOrder}>
+                    CHECKOUT NOW
+                  </ButtonSummary>
                 </NavLink>
               </Summary>
             </Bottom>

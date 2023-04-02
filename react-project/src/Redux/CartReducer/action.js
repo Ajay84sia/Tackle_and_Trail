@@ -15,7 +15,7 @@ export const cartPostReq = (Obj) => (dispatch) => {
 export const cartGetReq = (endpoint, paramObj) => (dispatch) => {
     dispatch({ type: CART_REQUEST })
 
-    axios.get(`https://tackle-and-trail.onrender.com/cart`).then((res) => {
+    return axios.get(`https://tackle-and-trail.onrender.com/cart`).then((res) => {
         dispatch({ type: CART_GET_SUCCESS, payload: res.data })
     }).catch(() => {
         dispatch({ type: CART_FAILURE })

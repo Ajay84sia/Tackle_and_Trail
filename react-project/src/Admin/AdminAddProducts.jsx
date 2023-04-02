@@ -9,48 +9,52 @@ import {
   Select,
   Stack,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { adminPostReq } from "../Redux/AdminReducer/action";
 const initalData = {
-  title:'',
-  image:"",
-  endpoint:"",
-  category:"",
-  price:"",
-  description:"",
-
-}
+  title: "",
+  image: "",
+  endpoint: "",
+  category: "",
+  price: "",
+  description: "",
+};
 const AdminAddProducts = () => {
-  const[formstate,setFormState] = useState(initalData);
+  const toast = useToast();
+  const [formstate, setFormState] = useState(initalData);
   const dispatch = useDispatch();
   // const{title,image,endpoint,category,price,description} = formstate;
 
-  const handleChange= (e)=>{
-    const{name,value} = e.target;
-    // const val = type==="number" ? Number(value) : value; 
-    setFormState((prev)=>{
-      return {...prev,[name]:value}
-    })
-  }
-  const handleSubmit=(e)=>{
-        e.preventDefault();
-        // console.log(...formstate);
-        const data = {...formstate,["price"]:Number(formstate.price)}
-        dispatch(adminPostReq(formstate.endpoint,data));
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    // const val = type==="number" ? Number(value) : value;
+    setFormState((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(...formstate);
+    const data = { ...formstate, ["price"]: Number(formstate.price) };
+    dispatch(adminPostReq(formstate.endpoint, data)).then(()=>{
+      setFormState(initalData)
+    }).then(() => {
+      toast({
+        title: `Product Data Added in the Database`,
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+      });
+    });
+  };
   return (
-    <Box >
-      <Box
-        rounded={"lg"}
-        bg={"white"}
-        boxShadow={"lg"}
-        py={5}
-        px={8}
-      >
+    <Box>
+      <Box rounded={"lg"} bg={"white"} boxShadow={"lg"} py={5} px={8}>
         <Stack spacing={2}>
-          <FormControl >
+          <FormControl>
             <FormLabel>Product Title</FormLabel>
             <Input
               type="text"
@@ -72,9 +76,12 @@ const AdminAddProducts = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Select Product Category</FormLabel>
-            <Select placeholder="Select Product Category" name="endpoint"
-            value={formstate.endpoint}
-            onChange={handleChange}>
+            <Select
+              placeholder="Select Product Category"
+              name="endpoint"
+              value={formstate.endpoint}
+              onChange={handleChange}
+            >
               <option value="fishing">Fishing</option>
               <option value="boating">Boating</option>
               <option value="hunting">Hunting</option>
@@ -99,7 +106,6 @@ const AdminAddProducts = () => {
               <InputLeftElement
                 pointerEvents="none"
                 color="gray.900"
-                
                 fontSize="1.2em"
                 children="$"
               />
@@ -114,14 +120,17 @@ const AdminAddProducts = () => {
           </FormControl>
           <FormControl>
             <FormLabel>Product Description</FormLabel>
-            <Textarea name="description" placeholder='Enter Product Description here' value={formstate.description}
+            <Textarea
+              name="description"
+              placeholder="Enter Product Description here"
+              value={formstate.description}
               onChange={handleChange}
             />
           </FormControl>
           <Stack spacing={10}>
             <Button
-            // type="submit"
-            onClick={handleSubmit}
+              // type="submit"
+              onClick={handleSubmit}
               bg={"blue.400"}
               color={"white"}
               margin="auto"

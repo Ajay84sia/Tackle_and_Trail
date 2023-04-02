@@ -7,7 +7,7 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 export const Footer1 = () => {
   return (
     <Flex gap={"3vw"} align={"center"}  height={"12vh"} borderTop="1px solid lightgrey" borderBottom={"1px solid lightgrey"}>
-            <Text pl={"2vw"} fontSize="2xl" fontWeight="semibold" >CONTACT BASS PRO SHOPS</Text>
+            <Text pl={"2vw"} fontSize="2xl" fontWeight="semibold" >CONTACT TACKLE AND TRAIL</Text>
             <Text cursor={"pointer"} _hover={{textDecoration:"underline"}}>Live Chat</Text>
             <HStack>
                 <AiOutlineMail cursor={"pointer"} fontSize="30px"/>

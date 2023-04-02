@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADMIN_DELETE_REQUEST, ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST } from "./actionTypes"
+import { ADMIN_DELETE_REQUEST, ADMIN_FAILURE_REQUEST, ADMIN_GET_REQUEST, ADMIN_ORDERS_REQUEST, ADMIN_POST_REQUEST, ADMIN_REQUEST } from "./actionTypes"
 
 
 
@@ -28,12 +28,22 @@ export const adminGetReq = (endpoint, paramObj) => (dispatch) => {
     })
 }
 
+export const adminOrdersReq = (paramObj) => (dispatch) => {
+    dispatch({ type: ADMIN_REQUEST })
+
+    axios.get(`https://tackle-and-trail.onrender.com/orders`, paramObj).then((res) => {
+        dispatch({ type: ADMIN_ORDERS_REQUEST, payload: res.data })
+    }).catch(() => {
+        dispatch({ type: ADMIN_FAILURE_REQUEST })
+    })
+}
+
 // POST Request
 
 export const adminPostReq = (endpoint, Obj) => (dispatch) => {
     dispatch({ type: ADMIN_REQUEST })
 
-    axios.post(`https://tackle-and-trail.onrender.com/${endpoint}`, Obj).then((res) => {
+    return axios.post(`https://tackle-and-trail.onrender.com/${endpoint}`, Obj).then((res) => {
         dispatch({ type: ADMIN_POST_REQUEST })
     }).catch(() => {
         dispatch({ type: ADMIN_FAILURE_REQUEST })

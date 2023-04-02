@@ -10,9 +10,10 @@ import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 import { capitalize } from "@material-ui/core";
 const Sidebar = ({ page, order, search, categories }) => {
+  const location = useLocation();
   const [searchParams, setsearchParams] = useSearchParams();
   const initialcategory = searchParams.getAll("category");
   const [category, setcategory] = useState(initialcategory || []);
@@ -30,7 +31,7 @@ const Sidebar = ({ page, order, search, categories }) => {
     search && (params.q = search);
     order && (params.order = order);
     setsearchParams(params);
-  }, [category, order, title, search]);
+  }, [category, order, title, search, location.search]);
 
   const handletitle = (e) => {
     let newtitle = [...title];
@@ -38,7 +39,7 @@ const Sidebar = ({ page, order, search, categories }) => {
     const value = e.target.value;
     console.log(value);
     if (newtitle.includes(value)) {
-      newtitle.splice(newtitle.indexOf(value), 1);
+      newtitle = newtitle.filter((el) => el !== value);
     } else {
       newtitle.push(value);
     }
@@ -50,7 +51,7 @@ const Sidebar = ({ page, order, search, categories }) => {
     const value = e.target.value;
     console.log(value);
     if (newcategory.includes(value)) {
-      newcategory.splice(newcategory.indexOf(value), 1);
+      newcategory = newcategory.filter((el) => el !== value);
     } else {
       newcategory.push(value);
     }
@@ -58,10 +59,9 @@ const Sidebar = ({ page, order, search, categories }) => {
   };
 
   return (
-    <div style={{ height: "800px", width: "320px",marginTop:"40px"}}>
-      <b style={{fontSize:"22px"}}>FILTER BY</b>
-      <Accordion allowMultiple style={{marginTop:"20px"}}>
-      
+    <div style={{ height: "800px", width: "320px", marginTop: "40px" }}>
+      <b style={{ fontSize: "22px" }}>FILTER BY</b>
+      <Accordion allowMultiple style={{ marginTop: "20px" }}>
         <AccordionItem>
           <h2>
             <AccordionButton
@@ -70,7 +70,7 @@ const Sidebar = ({ page, order, search, categories }) => {
               backgroundColor="white"
             >
               <Box as="span" flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Category</b>
+                <b style={{ fontSize: "22px" }}>Category</b>
               </Box>
               <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
@@ -81,7 +81,7 @@ const Sidebar = ({ page, order, search, categories }) => {
                 return (
                   <>
                     <Checkbox
-                    key={i}
+                      key={i}
                       height="20px"
                       width="20px"
                       textAlign="left"
@@ -99,7 +99,6 @@ const Sidebar = ({ page, order, search, categories }) => {
           </AccordionPanel>
         </AccordionItem>
 
- 
         <AccordionItem>
           <h2>
             <AccordionButton
@@ -108,7 +107,7 @@ const Sidebar = ({ page, order, search, categories }) => {
               backgroundColor="white"
             >
               <Box as="span" flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Brand</b>
+                <b style={{ fontSize: "22px" }}>Brand</b>
               </Box>
               <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
@@ -118,25 +117,18 @@ const Sidebar = ({ page, order, search, categories }) => {
               height="20px"
               width="20px"
               textAlign="left"
-              value={"Bass Pro Shops Stainless Steel Bowl"}
+              value={"Garmin ECHOMAP Ultra 10 Chartplotter/Fish Finder Combo"}
               onChange={handletitle}
-              checked={title.includes("Bass Pro Shops Stainless Steel Bowl")}
-              defaultChecked={title == "Bass Pro Shops Stainless Steel Bowl"}
+              checked={title.includes(
+                "Garmin ECHOMAP Ultra 10 Chartplotter/Fish Finder Combo"
+              )}
+              defaultChecked={
+                title ==
+                "Garmin ECHOMAP Ultra 10 Chartplotter/Fish Finder Combo"
+              }
               alignSelf="left"
             />
-            <span>Bass Pro</span>
-            <br />
-            <br />
-            <Checkbox
-              height="20px"
-              width="20px"
-              textAlign="left"
-              value={'Masterbuilt 30" Electric Smoker Covert'}
-              onChange={handletitle}
-              checked={title.includes('Masterbuilt 30" Electric Smoker Cover')}
-              defaultChecked={title == 'Masterbuilt 30" Electric Smoker Cover'}
-            />
-            <span>Masterbuilt</span>
+            <span>Garmin ECHOMAP Ultra</span>
             <br />
             <br />
             <Checkbox
@@ -144,66 +136,53 @@ const Sidebar = ({ page, order, search, categories }) => {
               width="20px"
               textAlign="left"
               value={
-                "Champion Power Equipment 3550W Weekender Portable Generator"
+                "Humminbird HELIX 7 CHIRP MEGA SI GPS G4 Fish Finder/Chartplotter "
               }
               onChange={handletitle}
               checked={title.includes(
-                "Champion Power Equipment 3550W Weekender Portable Generator"
+                "Humminbird HELIX 7 CHIRP MEGA SI GPS G4 Fish Finder/Chartplotter "
               )}
               defaultChecked={
                 title ==
-                "Champion Power Equipment 3550W Weekender Portable Generator"
+                "Humminbird HELIX 7 CHIRP MEGA SI GPS G4 Fish Finder/Chartplotter "
               }
             />
-            <span>Champion</span>
+            <span>Humminbird HELIX</span>
             <br />
             <br />
             <Checkbox
               height="20px"
               width="20px"
               textAlign="left"
-              value={"GSI Outdoors Enamelware Espresso Cup"}
+              value={"Lowrance HDS PRO 12 Fish Finder/Chartplotter"}
               onChange={handletitle}
-              checked={title.includes("GSI Outdoors Enamelware Espresso Cup")}
-              defaultChecked={title == "GSI Outdoors Enamelware Espresso Cup"}
+              checked={title.includes(
+                "Lowrance HDS PRO 12 Fish Finder/Chartplotter"
+              )}
+              defaultChecked={
+                title == "Lowrance HDS PRO 12 Fish Finder/Chartplotter"
+              }
             />
-            <span>GS</span>
-            <br />
-            <br />
-          </AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <h2>
-            <AccordionButton
-              height="60px"
-              width="300px"
-              backgroundColor="white"
-              
-            >
-               <Box as="span" flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Type</b>
-              </Box>
-              <AccordionIcon height="40px" width="45px" />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel textAlign="left">
-            <Checkbox
-              height="20px"
-              width="20px"
-              textAlign="left"
-            
-              alignSelf="left"
-            />
-            <span>In Stock</span>
+            <span>Lowrance HDS PRO</span>
             <br />
             <br />
             <Checkbox
               height="20px"
               width="20px"
               textAlign="left"
-             
+              value={"Bass Pro Shops Deluxe Mesh Fishing Life Vest for Adults"}
+              onChange={handletitle}
+              checked={title.includes(
+                "Bass Pro Shops Deluxe Mesh Fishing Life Vest for Adults"
+              )}
+              defaultChecked={
+                title ==
+                "Bass Pro Shops Deluxe Mesh Fishing Life Vest for Adults"
+              }
             />
-            <span>Limited Stock</span>
+            <span>Fishing Life Vest</span>
+            <br />
+            <br />
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem>
@@ -214,7 +193,7 @@ const Sidebar = ({ page, order, search, categories }) => {
               backgroundColor="white"
             >
               <Box as="span" flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Price</b>
+                <b style={{ fontSize: "22px" }}>Price</b>
               </Box>
               <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
@@ -254,21 +233,19 @@ const Sidebar = ({ page, order, search, categories }) => {
             <span>Price:300-above</span>
           </AccordionPanel>
         </AccordionItem>
-        <hr />
         <AccordionItem>
-          <h1>
+          <h2>
             <AccordionButton
               height="60px"
               width="300px"
               backgroundColor="white"
             >
-          
-              <Box  flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Availability</b>
+              <Box as="span" flex="1" textAlign="left">
+                <b style={{ fontSize: "22px" }}>Average Ratings</b>
               </Box>
               <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
-          </h1>
+          </h2>
           <AccordionPanel textAlign="left">
             <Checkbox
               height="20px"
@@ -276,11 +253,24 @@ const Sidebar = ({ page, order, search, categories }) => {
               textAlign="left"
               alignSelf="left"
             />
-            <span>In Stock</span>
-            <br />
+            <span>⭐⭐⭐⭐⭐(5)</span>
             <br />
             <Checkbox height="20px" width="20px" textAlign="left" />
-            <span>Limited Stock</span>
+            <span>⭐⭐⭐⭐ (4)</span>
+            <br />
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+              alignSelf="left"
+            />
+            <span>⭐⭐⭐ (3)</span>
+            <br />
+            <Checkbox height="20px" width="20px" textAlign="left" />
+            <span>⭐⭐ (2)</span>
+            <br />
+            <Checkbox height="20px" width="20px" textAlign="left" />
+            <span>⭐ (1)</span>
           </AccordionPanel>
         </AccordionItem>
         <AccordionItem>
@@ -291,7 +281,7 @@ const Sidebar = ({ page, order, search, categories }) => {
               backgroundColor="white"
             >
               <Box as="span" flex="1" textAlign="left">
-                <b style={{fontSize:"22px"}}>Average Ratings</b>
+                <b style={{ fontSize: "22px" }}>Type</b>
               </Box>
               <AccordionIcon height="40px" width="45px" />
             </AccordionButton>
@@ -310,8 +300,37 @@ const Sidebar = ({ page, order, search, categories }) => {
             <span>Limited Stock</span>
           </AccordionPanel>
         </AccordionItem>
-        <br/>
 
+        <hr />
+        <AccordionItem>
+          <h1>
+            <AccordionButton
+              height="60px"
+              width="300px"
+              backgroundColor="white"
+            >
+              <Box flex="1" textAlign="left">
+                <b style={{ fontSize: "22px" }}>Availability</b>
+              </Box>
+              <AccordionIcon height="40px" width="45px" />
+            </AccordionButton>
+          </h1>
+          <AccordionPanel textAlign="left">
+            <Checkbox
+              height="20px"
+              width="20px"
+              textAlign="left"
+              alignSelf="left"
+            />
+            <span>In Stock</span>
+            <br />
+            <br />
+            <Checkbox height="20px" width="20px" textAlign="left" />
+            <span>Limited Stock</span>
+          </AccordionPanel>
+        </AccordionItem>
+
+        <br />
       </Accordion>
     </div>
   );
