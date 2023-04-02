@@ -58,11 +58,10 @@ const Sidebar = ({ page, order, search, categories }) => {
   };
 
   return (
-    <div style={{ height: "800px", width: "320px",marginTop:"40px" }}>
+    <div style={{ height: "800px", width: "320px",marginTop:"40px"}}>
       <b style={{fontSize:"22px"}}>FILTER BY</b>
       <Accordion allowMultiple style={{marginTop:"20px"}}>
       
-        <hr />
         <AccordionItem>
           <h2>
             <AccordionButton
@@ -101,7 +100,6 @@ const Sidebar = ({ page, order, search, categories }) => {
         </AccordionItem>
 
  
-        <hr />
         <AccordionItem>
           <h2>
             <AccordionButton
@@ -174,7 +172,6 @@ const Sidebar = ({ page, order, search, categories }) => {
             <br />
           </AccordionPanel>
         </AccordionItem>
-        <hr />
         <AccordionItem>
           <h2>
             <AccordionButton
@@ -312,9 +309,7 @@ const Sidebar = ({ page, order, search, categories }) => {
             <Checkbox height="20px" width="20px" textAlign="left" />
             <span>Limited Stock</span>
           </AccordionPanel>
-          <hr/>
         </AccordionItem>
-        <hr/>
         <br/>
 
       </Accordion>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Spinner } from "@chakra-ui/react";
 import { getproducts } from "../Redux/productReducer/action";
 import { Page } from "./Pagination";
@@ -42,11 +42,11 @@ function StarFunc({ rating }) {
   return (
     <Flex align="center">
       {[...Array(maxRating)].map((_, index) => {
-        const isFilled = index < Math.floor(rating);
+        const isFilled = index < rating;
 
         return (
-          <Box key={index} color={isFilled ? "grey" : "gray.300"} mr={1}>
-            <StarIcon style={{ height: "10px", width: "10px" }} />
+          <Box key={index} color={isFilled ? "grey" : "gray.300"} mr={1} >
+            <StarIcon style={{height:"10px",width:"10px"}}/>
           </Box>
         );
       })}
@@ -55,39 +55,45 @@ function StarFunc({ rating }) {
   );
 }
 
+const getCurrentPage=(value)=>{
+  value=Number(value);
+  if(typeof value==="number" && value<=0){
+    value=1;
+  }
+  if(!value){
+    value=1;
+  }
+  return value
+}
 
-export const Product = ({ endpoint, categories }) => {
+
+export const Product = ({endpoint,categories}) => {
   const{search}=useContext(SearchContext)
   const [searchParams,setsearchParams] = useSearchParams();
   const location = useLocation();
-  const { products, isLoading, isError } = useSelector(
-    (store) => store.productReducer
-  );
-  const [page, setPage] = useState(1);
+  const { products,isLoading } = useSelector((store) => store.productReducer);
+  const initialPage=getCurrentPage(searchParams.get("page"))
+  const [page, setPage] = useState(initialPage||1);
   const initialOrder = searchParams.get("order");
-  const [order, setOrder] = useState(initialOrder || "");
-  const initialSort = searchParams.get("sort");
-  const [sort, setSort] = useState(initialSort || "");
+  const [order, setOrder] = useState(initialOrder || "")
+  const initialSort=searchParams.get("sort")
+  const[sort,setSort]=useState(initialSort||"")
   const dispatch = useDispatch();
   const obj = {
     params: {
       category: searchParams.getAll("category"),
-      title: searchParams.getAll("title"),
-      _sort:
-        sort === "price" || sort === "reviews" || sort === "rating"
-          ? sort
-          : undefined,
-      _order: searchParams.get("order"),
-      q: searchParams.get("q"),
+      title:searchParams.getAll("title"),
+      _sort: sort === "price" || sort === "reviews"||sort==="rating" ? sort : undefined,
+      _order:searchParams.get("order"),
+      q:searchParams.get("q"),
+      page:searchParams.get("page")
     },
   };
 console.log(search)
   const handleSort = (event) => {
     const sortType = event.target.dataset.sort;
-
-    const orderdata = event.target.dataset.value1;
-
-
+    const orderdata= event.target.dataset.value1
+ 
     if (sort === sortType) {
       setOrder(orderdata);
     } else {
@@ -103,72 +109,53 @@ useEffect(()=>{
    setsearchParams({q:search})
   },500)
   return ()=>clearTimeout(timeoutId)
-},[search])
+},[search,page])
 
   useEffect(() => {
-    dispatch(getproducts(endpoint, obj, page));
-  }, [page, location.search]);
+    dispatch(getproducts(endpoint,obj, page));
+  }, [location.search]);
 
-  console.log(sort);
-  console.log(order);
+  useEffect(()=>{
+    setsearchParams({page:page})
+  },[page,search])
 
-  // if (isLoading) {
-  //   return (
-  //     <Spinner
-  //       style={{ textAlign: "center", marginTop: "300px" }}
-  //       thickness="4px"
-  //       speed="0.65s"
-  //       emptyColor="gray.200"
-  //       color="blue.500"
-  //       size="xl"
-  //     />
-  //   );
-  // }
+// console.log(sort)
+//   console.log(order)
 
-  if (isLoading === true) {
-    return (
-      <>
-        <Image
-          src="https://i.stack.imgur.com/hzk6C.gif"
-          alt="loading"
-          margin="auto"
-          paddingTop="90px"
-          marginBottom="360px"
-          mt={"31vh"}
-        />
-      </>
-    );
-  }
-  if (isError === true) {
-    return (
-      <>
-        <Image
-          src="https://cdn.dribbble.com/users/774806/screenshots/3823110/something-went-wrong.gif"
-          alt="error"
-          margin="auto"
-          paddingTop="30px"
-          mt={"31vh"}
-        />
-      </>
-    );
-  }
+// console.log(isLoading)
+
+if(isLoading){
+  console.log(isLoading)
+  return <Spinner
+  style={{textAlign:"center",marginTop:"300px"}}
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>
+}
   return (
     <>
-      <div className="wrapper">
-        <Sidebar page={page} order={order} search={search} style={{marginTop:"80px"}} className="sidebar"/>
-        <div className="carddata"
-
+      <div className="wrapper" style={{paddingTop:"28vh"}}>
+        <Sidebar page={page} order={order}  categories={categories} search={search} style={{marginTop:"80px"}} className="sidebar"/>
+        <div 
           style={{
             borderLeft: "1px solid grey",
             height: "auto",
             float: "right",
-            marginLeft: "20px",
+            marginLeft: "5px",
             marginTop: "50px",
+            width:"85%",
+            // border:"2px solid orange"
+            paddingLeft: "10px",
+            paddingRight: "10px"
           }}
         >
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div className="upper">
-              <span style={{ textTransform: "uppercase" }}>{endpoint}</span>
+          <div style={{ display: "flex", justifyContent: "space-between" , paddingLeft: "10px",
+            paddingRight: "10px"}}>
+            <div className="upper" >
+            <span style={{ textTransform: "uppercase" }}>{endpoint}</span>
               <br />
               <br />
             </div>
@@ -235,6 +222,7 @@ useEffect(()=>{
                     data-sort="rating"
                     data-value1="desc"
                     onClick={handleSort}
+                   
                   >
                    <b>Top Rated</b> 
                   </div>
@@ -243,6 +231,8 @@ useEffect(()=>{
                     data-sort="reviews"
                     data-value1="desc"
                     onClick={handleSort}
+                   
+                   
                   >
                    <b> Most Reviewed</b>
                   </div>
@@ -253,42 +243,40 @@ useEffect(()=>{
           <div
             style={{
               display: "grid",
-              gap: "15px",
-              gridTemplateColumns: "repeat(4,1fr)",
+              gap: "10px",
+              gridTemplateColumns: "repeat(3,1fr)",
               height: "auto",
               width: "100%",
-              marginLeft: "10px",
               marginTop: "20px",
+             marginLeft:"10px",
+              // border:"2px solid brown",
             }}
             className="bottom-div"
           >
             {products.map((el) => {
               return (
                 <div
-                  style={{ display: "flex", justifyContent: "space-around" }}
-                  key={el.id}
+                 
                 >
-                <Center py={4}>
-                 <NavLink to={`/${endpoint}/${el.id}`}>
+                <Link to={`/${endpoint}/${el.id}`}>
+
+             
         <Box
-        height="auto"
-          role={'group'}
-          p={8}
-          minW={"330px"}
-          maxW={'330px'}
-          w={'full'}
-           pos={'relative'}
-          _hover={{boxShadow:'2xl'}}
-          cursor="pointer"
-        
-          zIndex={1}>
+     w={"25%"} 
+  style={{ width: "100%" }}
+  pos={"relative"}
+  p={8}
+  _hover={{ boxShadow: "2xl" }}
+  cursor="pointer"
+  alignItems="stretch" 
+         >
             
           <Box
             rounded={'lg'}
-            // mt={-12}
+           width="100%"
             pos={'relative'}
-            height="auto"
-         
+            height="100%"
+       
             _after={{
               transition: 'all .3s ease',
               content: '""',
@@ -298,7 +286,7 @@ useEffect(()=>{
               top: 5,
               left: 0,
               filter: 'blur(15px)',
-              zIndex: -1,
+            
             }}
             _groupHover={{
               _after: {
@@ -307,18 +295,18 @@ useEffect(()=>{
             }}>
             <Image
               rounded={'lg'}
-              height={300}
-              width={282}
-              objectFit={'cover'}
+              height={200}
+              width={200}
+             textAlign={"center"}
               src={el.image}
               
             />
           </Box>
-          <Stack pt={10} align={'left'} >
+          <Stack  align={'left'} >
             <Text color={"black"} textTransform={'uppercase'} fontSize={'lg'} fontWeight="semibold" fontFamily={'body'} align={'left'}>
             {el.title}
             </Text>
-            <Stack spacing={0} direction={'column'} align={'left'}>
+            <Stack spacing={0} direction={'column'} align={'left'} style={{marginLeft:"5px"}}>
             <Text fontSize={'md'} fontWeight="semibold" color={"black"} align={'left'}>
                     ({el.reviews})
               </Text>
@@ -335,17 +323,19 @@ useEffect(()=>{
             </Stack>
           </Stack>
         </Box>
-        </NavLink>
-      </Center>
    
-
+   
+                  </Link>
                 </div>
               );
             })}
           </div>
         </div>
       </div>
+     
       <Page page={page} setPage={setPage}  />
     </>
   );
+          
 };
+

@@ -13,6 +13,7 @@ import {
 } from "../Redux/CartReducer/action";
 import { NavLink } from "react-router-dom";
 import { element } from "prop-types";
+import { Center, Image as IMG } from "@chakra-ui/react";
 
 const Container = styled.div``;
 
@@ -221,81 +222,100 @@ export const Cart = () => {
               <TopButton>CONTINUE SHOPPING</TopButton>
             </NavLink>
             <TopTexts>
-              <TopText>Cart Contains - {cart.length} items</TopText>
+              {cart.length > 0 && (
+                <TopText>Cart Contains - {cart.length} items</TopText>
+              )}
             </TopTexts>
             <TopButton type="filled">Check Store Availability</TopButton>
           </Top>
-          <Bottom>
-            <Info>
-              {cart &&
-                cart.map((el, i) => {
-                  return (
-                    <>
-                      <Product>
-                        <ProductDetail>
-                          <Image src={el.image} alt={el.title} />
-                          <Details>
-                            <ProductName>{el.title}</ProductName>
-                            <ProductId>{`T&T-${Math.round(
-                              Math.random() * 1000
-                            )}`}</ProductId>
-                            <button onClick={() => handleDelete(el.id)}>
-                              <ProductSize>Remove</ProductSize>
-                            </button>
-                          </Details>
-                        </ProductDetail>
-                        <ProductArrivalDetails>
-                          <LocalShippingIcon />
-                          <ProductArrivalPlace>
-                            Ship To Address
-                          </ProductArrivalPlace>
-                        </ProductArrivalDetails>
-                        <PriceDetail>
-                          <ProductAmountContainer>
-                            <button
-                              onClick={() =>
-                                handleCartQuantity(el.id, el.quantity, -1)
-                              }
-                            >
-                              <RemoveIcon />
-                            </button>
-                            <ProductAmount>{el.quantity}</ProductAmount>
-                            <button onClick={() => handleCartQuantity(el.id, el.quantity, 1)}>
-                              <AddIcon />
-                            </button>
-                          </ProductAmountContainer>
-                        </PriceDetail>
-                        <ProductPrice>
-                          $ {Math.round(el.price * el.quantity)}
-                        </ProductPrice>
-                      </Product>
-                    </>
-                  );
-                })}
+          {cart.length == 0 ? (
+            <Center>
+              <IMG
+                src="https://www.eyecatchers.in/shop-online/images/cart-empty.jpg"
+                alt="emptyCart"
+                marginTop="-40px"
+                marginBottom="50px"
+              />
+            </Center>
+          ) : (
+            <Bottom>
+              <Info>
+                {cart &&
+                  cart.map((el, i) => {
+                    return (
+                      <>
+                        <Product>
+                          <ProductDetail>
+                            <Image src={el.image} alt={el.title} />
+                            <Details>
+                              <ProductName>{el.title}</ProductName>
+                              <ProductId>{`T&T-${Math.round(
+                                Math.random() * 1000
+                              )}`}</ProductId>
+                              <button onClick={() => handleDelete(el.id)}>
+                                <ProductSize>Remove</ProductSize>
+                              </button>
+                            </Details>
+                          </ProductDetail>
+                          <ProductArrivalDetails>
+                            <LocalShippingIcon />
+                            <ProductArrivalPlace>
+                              Ship To Address
+                            </ProductArrivalPlace>
+                          </ProductArrivalDetails>
+                          <PriceDetail>
+                            <ProductAmountContainer>
+                              <button
+                                onClick={() =>
+                                  handleCartQuantity(el.id, el.quantity, -1)
+                                }
+                              >
+                                <RemoveIcon />
+                              </button>
+                              <ProductAmount>{el.quantity}</ProductAmount>
+                              <button
+                                onClick={() =>
+                                  handleCartQuantity(el.id, el.quantity, 1)
+                                }
+                              >
+                                <AddIcon />
+                              </button>
+                            </ProductAmountContainer>
+                          </PriceDetail>
+                          <ProductPrice>
+                            $ {Math.round(el.price * el.quantity)}
+                          </ProductPrice>
+                        </Product>
+                      </>
+                    );
+                  })}
 
-              <Hr />
-            </Info>
-            <Summary>
-              <SummaryTitle> ORDER SUMMARY </SummaryTitle>
-              <SummaryItem>
-                <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$ {cartTotal}</SummaryItemPrice>
-              </SummaryItem>
-              <SummaryItem>
-                <SummaryItemText> Shipping</SummaryItemText>
-                <SummaryItemPrice>$ 5</SummaryItemPrice>
-              </SummaryItem>
-              <SummaryItem>
-                <SummaryItemText>Shipping Discount</SummaryItemText>
-                <SummaryItemPrice>Free</SummaryItemPrice>
-              </SummaryItem>
-              <SummaryItem type="total">
-                <SummaryItemText>Cart Total</SummaryItemText>
-                <SummaryItemPrice>$ {cartTotal + 5}</SummaryItemPrice>
-              </SummaryItem>
-              <ButtonSummary>CHECKOUT NOW</ButtonSummary>
-            </Summary>
-          </Bottom>
+                <Hr />
+              </Info>
+              <Summary>
+                <SummaryTitle> ORDER SUMMARY </SummaryTitle>
+                <SummaryItem>
+                  <SummaryItemText>Subtotal</SummaryItemText>
+                  <SummaryItemPrice>$ {cartTotal}</SummaryItemPrice>
+                </SummaryItem>
+                <SummaryItem>
+                  <SummaryItemText> Shipping</SummaryItemText>
+                  <SummaryItemPrice>$ 5</SummaryItemPrice>
+                </SummaryItem>
+                <SummaryItem>
+                  <SummaryItemText>Shipping Discount</SummaryItemText>
+                  <SummaryItemPrice>Free</SummaryItemPrice>
+                </SummaryItem>
+                <SummaryItem type="total">
+                  <SummaryItemText>Cart Total</SummaryItemText>
+                  <SummaryItemPrice>$ {cartTotal + 5}</SummaryItemPrice>
+                </SummaryItem>
+                <NavLink to="/payment">
+                  <ButtonSummary>CHECKOUT NOW</ButtonSummary>
+                </NavLink>
+              </Summary>
+            </Bottom>
+          )}
         </Wrapper>
       </Container>
       <Footer />
