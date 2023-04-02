@@ -91,4 +91,16 @@ This will start the development server at http://localhost:3000.
 # All Orders Section
 ![image](https://user-images.githubusercontent.com/98752820/229356204-a8511fad-e5c6-4579-bbd5-508fcedab846.png)
 
+
+### Contributing:
+
+If you would like to contribute to this project, you can follow these steps:
+
+Fork the repository
+Create a new branch for your feature or bug fix using git checkout -b your-feature-branch
+Make your changes and commit them using git commit -am 'Add some feature'
+Push your changes to your fork using git push origin your-feature-branch
+Create a pull request to the main repository
+
+
 <h1 align="center">:sparkles:Thank You:sparkles:</h1>
