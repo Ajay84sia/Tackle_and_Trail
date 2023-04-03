@@ -18,9 +18,10 @@ building user interfaces or UI components.
 - Chakra-UI: A popular UI component library for React.
 - Render.com: A popular backend-as-a-service platform that provides authentication, database, and hosting services.
 - Netlify: A popular platform for client side (front-end) deployment.
-- Chart.Js: Chart.js is a free, open-source JavaScript library for data visualization, which supports eight chart types: bar, line, area, pie, bubble, radar, polar, and scatter.
 - Auth0: Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications. 
 - Stripe Payment Gateway : Stripe is a card processing provider that processes your customers' payments.
+- Chart.Js: Chart.js is a free, open-source JavaScript library for data visualization, which supports eight chart types: bar, line, area, pie, bubble, radar, polar, and scatter.
+
 ## Credits
 This project was created by Team Tackle and Trail. The Team Members are
 <br>
