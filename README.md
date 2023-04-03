@@ -33,12 +33,12 @@ This project was created by Team Tackle and Trail. The Team Members are
 <br>
 5.Rishabh Dev -  _(Admin Panel, documentation)_
 ### Installation
-To install and run this project on your local machine, follow these steps: <br>
-Clone the repository using git clone https://github.com/Ajay84sia/auspicious-sea-8816 <br>
-Navigate to the project directory using cd react-project <br>
-Install the dependencies using npm install <br>
-Start the development server using npm start <br>
-This will start the development server at http://localhost:3000. <br>
+To install and run this project on your local machine, follow these steps:
+- Clone the repository using git clone https://github.com/Ajay84sia/auspicious-sea-8816 
+- Navigate to the project directory using cd react-project 
+- Install the dependencies using npm install 
+- Start the development server using npm start
+- This will start the development server at http://localhost:3000. 
 ---
 ## Screenshots :camera:
 ---
