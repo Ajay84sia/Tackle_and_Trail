@@ -30,6 +30,7 @@ This project was created by Team Tackle and Trail. The Team Members are
 3.Harshita katara - _(all products page, sidebar, searching, sorting & filtering)_
 <br>
 4.Pranav Barsagade -  _(single product, cart page, checkout page)_
+<br>
 5.Rishabh Dev -  _(Admin Panel, documentation)_
 ### Installation
 To install and run this project on your local machine, follow these steps:
