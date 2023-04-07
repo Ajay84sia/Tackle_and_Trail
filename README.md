@@ -45,7 +45,7 @@ To install and run this project on your local machine, follow these steps:
 ## Screenshots :camera:
 ---
 # HomePage
-![image](https://user-images.githubusercontent.com/61020616/229343167-9a3044fa-3198-4834-8337-65d87b69b948.png)
+![image](https://user-images.githubusercontent.com/98752820/230619027-6e6090e1-1a45-4944-8004-e02d949dd97e.png)
 ![image](https://user-images.githubusercontent.com/61020616/229343207-be5468a7-37bc-4b46-ba84-af1bb3761937.png)
 ![image](https://user-images.githubusercontent.com/61020616/229343308-1e47dc7d-13cd-4dd3-beef-778fe21e5f64.png)
 # Signup | Login
